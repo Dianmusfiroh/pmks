@@ -17,17 +17,31 @@
         <tr>
             <th style="width: 10%;">No</th>
             <th>Nama</th>
-            <th>No KK</th>
-            <th>NIK</th>
-            <th>Tanggal Lahir</th>
             <th>Jenis PMKS</th>
+            <th>Jenis Bantuan</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        <tr></tr>
+        @foreach ($calonPenerima as $key => $item)
+        <tr>
+            <td>{{++$key}}</td>
+            <td>{{$item->nama}}</td>
+            <td>{{$item->jenis_pmks}}</td>
+            <td>{{$item->jenis_bantuan}}</td>
+            <td>
+                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->nama }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
+                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
+                    data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
+                    Delete</a>
+            </td>
+        </tr>
+
     </tbody>
+    @endforeach
+
 </table>
+
 @endsection
 @section('plugins.Datatables', true)
 @section('js')
@@ -37,5 +51,5 @@
                     "responsive": true
                 });
 </script>
-{{-- @include('layouts.script.delete') --}}
+@include('layouts.script.delete')
 @endsection

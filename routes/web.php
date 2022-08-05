@@ -18,7 +18,7 @@ use App\Http\Controllers\CalonPenrimaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Auth::routes();

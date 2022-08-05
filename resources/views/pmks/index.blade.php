@@ -11,8 +11,8 @@
 </div>
 @endsection
 @section('card-body')
-
-<table class="table table-bordered table-striped table-sm text-center" id="myTable">
+<div class="table-responsive">
+<table class="table  table-bordered table-striped table-sm text-center" id="myTable">
     <thead>
         <tr>
             <th style="width: 10%;">No</th>
@@ -21,13 +21,34 @@
             <th>NIK</th>
             <th>Tanggal Lahir</th>
             <th>Jenis PMKS</th>
+            <th>Jenis Kelamin</th>
+            <th>Alamat</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        <tr></tr>
+        @foreach ($pmks as $key => $item )
+        <tr>
+            <td>{{++$key}}</td>
+            <td>{{$item->nama}}</td>
+            <td>{{$item->no_kk}}</td>
+            <td>{{$item->nik}}</td>
+            <td>{{$item->tgl_lahir}}</td>
+            <td>{{$item->jenis_pmks}}</td>
+            <td>{{$item->jenis_kelamin}}</td>
+            <td>{{$item->alamat}}</td>
+            <td>
+                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->nama }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
+                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
+                    data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        @endforeach
+
     </tbody>
 </table>
+</div>
 @endsection
 @section('plugins.Datatables', true)
 @section('js')
@@ -37,5 +58,5 @@
                     "responsive": true
                 });
 </script>
-{{-- @include('layouts.script.delete') --}}
+@include('layouts.script.delete')
 @endsection

@@ -18,7 +18,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr></tr>
+        @foreach ($kecamatan as $key => $item )
+        <tr>
+            <td>{{++$key}}</td>
+            <td>{{$item->nama_kecamatan}}</td>
+            <td>{{$item->nama_camat}}</td>
+            <td>{{$item->nip}}</td>
+            <td>
+                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->nama }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
+                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
+                    data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        @endforeach
+
     </tbody>
 </table>
 @endsection
@@ -30,5 +44,5 @@
                     "responsive": true
                 });
 </script>
-{{-- @include('layouts.script.delete') --}}
+@include('layouts.script.delete')
 @endsection
