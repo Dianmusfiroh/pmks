@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kecamatan;
-use RealRashid\SweetAlert\Facades\Alert;
-
+// use RealRashid\SweetAlert\Facades\Alert;
+Use Alert;
 class KecamatanController extends Controller
 {
     public function __construct(){
@@ -42,18 +42,22 @@ class KecamatanController extends Controller
         ]);
 
         if ($post) {
-            return redirect()
-                ->route('kecamatan.index')
-                ->with([
-                    'success' => 'New post has been created successfully'
-                ]);
+            return redirect('kecamatan')->with('success', 'Task Created Successfully!');
+
+            // return redirect()
+            //     ->route('kecamatan.index')
+            //     ->with([
+            //         'success' => 'New post has been created successfully'
+            //     ]);
         } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+            return redirect('kecamatan')->with('error', 'Some problem occurred, please try again');
+
+            // return redirect()
+            //     ->back()
+            //     ->withInput()
+            //     ->with([
+            //         'error' => 'Some problem occurred, please try again'
+            //     ]);
         }
     }
     public function edit(Request $request,$id)

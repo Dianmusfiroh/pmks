@@ -71,6 +71,7 @@
     </div>
 </div>
 @include('sweetalert::alert')
+
 @stack('scripts')
 @stop
 @hasSection ('createupdate-app-js')
