@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>
+    {{--  <bphutton id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>  --}}
 
     <div class="row">
         <div class="col-lg-4">
