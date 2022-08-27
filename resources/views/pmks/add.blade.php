@@ -16,7 +16,35 @@
     <div class="form-group row">
         <div class="label col-md-3">Jenis PMKS</div>
         <div class="col-md-9">
-            <input type="text" name="jenis_pmks" id="jenis_pmks" class="form-control mt-2" placeholder="Masukan Jenis PMKS">
+            <select name="jenis_pmks" id="jenis_pmks" class="form-control">
+                <option value="Anak Balita Terlantar">Anak Balita Terlantar(ABT)</option>
+                <option value="Anak Terlantar">Anak Terlantar(AT)</option>
+                <option value="Anak Berhadapan Dengan Hukum">Anak Berhadapan Dengan Hukum(ABH)</option>
+                <option value="Anak Jalanan">Anak Jalanan(AJ)</option>
+                <option value="Anak Dengan Disabilitas">Anak Dengan Disabilitas</option>
+                <option value="Anak Yang Menjadi Korban Tindak Kekerasan">Anak Yang Menjadi Korban Tindak Kekerasan(AKTK)</option>
+                <option value="Anak Yang Memerlukan Perlindungan Khusus">Anak Yang Memerlukan Perlindungan Khusus</option>
+                <option value="Lanjut Usia Terlantar">Lanjut Usia Terlantar</option>
+                <option value="Penyandang Cacat Disabilitas">Penyandang Cacat Disabilitas(PCD)</option>
+                <option value="Tuna Susila">Tuna Susila</option>
+                <option value="Gelandangan">Gelandangan</option>
+                <option value="Pengemis">Pengemis</option>
+                <option value="Pemulung">Pemulung</option>
+                <option value="Kelompok Minoritas">Kelompok Minoritas</option>
+                <option value="Bekas Warga Binaan Pemasyarakatan">Bekas Warga Binaan Pemasyarakatan(EKS NAPI)</option>
+                <option value="Orang Dengan HIV/AIDS">Orang Dengan HIV/AIDS</option>
+                <option value="Korban Penyahgunaan Napza">Korban Penyahgunaan Napza</option>
+                <option value="Korban Trffking">Korban Trffking</option>
+                <option value="Korban Tindak Kekerasan">Korban Tindak Kekerasan(KTK)</option>
+                <option value="Pekerja Migran Bermasalah Sosial">Pekerja Migran Bermasalah Sosial</option>
+                <option value="Korban Bencana Alam">Korban Bencana Alam(KBA)</option>
+                <option value="Korban Bencana Sosial">Korban Bencana Sosial(KBS)</option>
+                <option value="Perempuan Rawan Sosial Ekonomi">Perempuan Rawan Sosial Ekonomi(PRSE)</option>
+                <option value="Fakir Miskin">Fakir Miskin</option>
+                <option value="Keluarga Bemasalah Sosial Psikologis">Keluarga Bemasalah Sosial Psikologis</option>
+                <option value="Komunitas Adat Terpencil">Komunitas Adat Terpencil</option>
+            </select>
+            {{--  <input type="text" name="jenis_pmks" id="jenis_pmks" class="form-control mt-2" placeholder="Masukan Jenis PMKS">  --}}
         </div>
     </div>
     <div class="form-group row">

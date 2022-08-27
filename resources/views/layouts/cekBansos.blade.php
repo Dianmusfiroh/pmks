@@ -21,9 +21,9 @@
     <div class="header__menu">
       <nav id="navbar" class="header__nav collapse">
         <ul class="header__elenco">
-          <li class="header__el"><a href="{{ route('beranda') }}" class="header__link">Home</a></li>
-          <li class="header__el"><a href="{{ route('statik') }}" class="header__link">Statistik</a></li>
-          <li class="header__el"><a href="{{ route('cekBansos') }}" class="header__link">Cek Bansos</a></li>
+            <li class="header__el"><a href="{{ route('beranda') }}" class="header__link">Home</a></li>
+            <li class="header__el"><a href="{{ route('statik') }}" class="header__link">Statistik</a></li>
+            <li class="header__el"><a href="#" class="header__link">Cek Bansos</a></li>
           <li class="header__el header__el--blue">
             @if (Route::has('login'))
                 @auth
@@ -48,24 +48,24 @@
     </div>
       </div>
   </header>
+        <h1 class="site__title mb-1">Cek Data Bansos</h1>
+  <div class="sect sect--padding-top">
+    <div class="container">
+      <div class="row">
+        <div  class=" site__title col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+            <div class="price-box__wrap">
+              <div class="price-box__img"></div>
+              <h1 class="price-box__title">
+                Startup
+              </h1>
+              <p class="price-box__feat">Anak Yang Menjadi Korban Tindak Kekerasan(AKTK)</p>
 
+            </div>
+        </div>
 
- <div class="row row--margin">
-      <div style="margin-top: 10%" class="col-md-5 article-pre__col row__title">
-          <h2 class="row--text-center">
-            <h1 class="site__title ">Sistem Informasi Penyandang Masalah Kesejateraan Sosial</h1>
-          </h2>
       </div>
-
-          <div class="col-md-7 article-pre__col">
-          <div class="article-pre__img article-pre__img--second"></div>
-
-      </div>
-   </div>
-
-
-
-
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <div class="row">
@@ -104,8 +104,3 @@
   <!-- [/] bootstrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    $("#myCarousel").carousel({
-  interval: false
-});
-</script>
