@@ -1,7 +1,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('css/gues.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('css/gues.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="https://image.ibb.co/fOur3b/favicon.png"/>
     <meta name="theme-color" content="#1885ed">
     <title>PMKS - Homepage</title>
