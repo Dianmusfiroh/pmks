@@ -26,8 +26,9 @@ class PmksController extends Controller
     }
     public function store(Request $request )
     {
+       
+    
         $this->validate($request, [
-            'jenis_pmks' => 'required',
             'nama'=>'required',
             'no_kk'=>'required',
             'nik'=>'required',
@@ -36,9 +37,11 @@ class PmksController extends Controller
             'kelurahan'=>'required',
             'kecamatan'=>'required',
             'jenis_kelamin'=>'required',
+            'kota'=>'required',
+            'provinsi'=>'required',
+            'id_dtks'=>'required',
         ]);
         $post = Pmks::create([
-            'jenis_pmks' => $request->jenis_pmks,
             'nama' => $request->nama,
             'no_kk' =>  $request->no_kk,
             'nik' =>  $request->nik,
@@ -47,6 +50,9 @@ class PmksController extends Controller
             'kelurahan' =>  $request->kelurahan,
             'kecamatan' =>  $request->kecamatan,
             'jenis_kelamin' =>  $request->jenis_kelamin,
+            'kota'=>$request->kota,
+            'provinsi'=>$request->provinsi,
+            'id_dtks'=>$request->id_dtks,
 
         ]);
 
@@ -73,7 +79,6 @@ class PmksController extends Controller
     }
     public function update(Request $request,$id){
         $this->validate($request, [
-            'jenis_pmks' => 'required',
             'nama'=>'required',
             'no_kk'=>'required',
             'nik'=>'required',
@@ -82,12 +87,14 @@ class PmksController extends Controller
             'kelurahan'=>'required',
             'kecamatan'=>'required',
             'jenis_kelamin'=>'required',
+            'kota'=>'required',
+            'provinsi'=>'required',
+            'id_dtks'=>'required',
         ]);
         // dd($request->kategori_bisnis);
         $post = Pmks::findOrFail($id);
 
         $post->update([
-            'jenis_pmks' => $request->jenis_pmks,
             'nama' => $request->nama,
             'no_kk' =>  $request->no_kk,
             'nik' =>  $request->nik,
@@ -96,6 +103,9 @@ class PmksController extends Controller
             'kelurahan' =>  $request->kelurahan,
             'kecamatan' =>  $request->kecamatan,
             'jenis_kelamin' =>  $request->jenis_kelamin,
+            'kota'=>$request->kota,
+            'provinsi'=>$request->provinsi,
+            'id_dtks'=>$request->id_dtks,
         ]);
 
         if ($post) {

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'PMKS Gorontalo',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -287,44 +287,92 @@ return [
             'url'  => 'laporanPenyaluran',
             'icon' => 'fas fa-fw fa-user',
         ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
+        [
+            'text'    => 'Assessment',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Jenis PMKS',
+                    'url'  => 'assessment/jenisPmks',
+                ],
+                [
+                    'text' => 'Jenis Disabilitas',
+                    'url'  => 'assessment/jenisDisabilitas',
+                ],
+                [
+                    'text' => 'Spesific Kecacatan',
+                    'url'  => 'assessment/spesificKecacatan',
+                ],
+                [
+                    'text'    => 'Status Tinggal PMKS',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Status Keberadaan Keluarga',
+                            'url'  => 'assessment/StatusKeberadaanKeluarga',
+                        ],
+                        [
+                            'text'    => 'Status Rumah',
+                            'url'     => 'assessment/StatusRumah',
+                            
+                        ],
+                        [
+                            'text'    => 'Keterangan Status Rumah',
+                            'url'     => 'assessment/KeteranganStatusRumah',
+                            
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Adl',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Mandi',
+                            'url'  => 'assessment/adlmandi',
+                        ],
+                        [
+                            'text'    => 'Makan',
+                            'url'     => 'assessment/adlmakan',
+                            
+                        ],
+                        [
+                            'text'    => 'Buang Air Kecil/Besar',
+                            'url'     => 'assessment/adlbab',
+                            
+                        ],
+                        [
+                            'text'    => 'Pakaian',
+                            'url'     => 'assessment/adlpakaian',
+                            
+                        ],
+                        [
+                            'text'    => 'PerawatanDiri',
+                            'url'     => 'assessment/adlPerawatanDiri',
+                            
+                        ],
+                        [
+                            'text'    => 'Transfer',
+                            'url'     => 'assessment/adltransfer',
+                            
+                        ],
+                       
+                    ],
+                ],
+                [
+                    'text' => 'Kppk',
+                    'url'  => 'assessment/kppk',
+                ],
+                [
+                    'text' => 'Usulan Bantuan',
+                    'url'  => 'assessment/uppk',
+                ],
+                [
+                    'text' => 'Batasan Score',
+                    'url'  => 'assessment/score',
+                ],
+            ],
+        ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

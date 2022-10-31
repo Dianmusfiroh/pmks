@@ -20,7 +20,6 @@
             <th>No KK</th>
             <th>NIK</th>
             <th>Tanggal Lahir</th>
-            <th>Jenis PMKS</th>
             <th>Jenis Kelamin</th>
             <th>Alamat</th>
             <th>Aksi</th>
@@ -34,7 +33,6 @@
             <td>{{$item->no_kk}}</td>
             <td>{{$item->nik}}</td>
             <td>{{$item->tgl_lahir}}</td>
-            <td>{{$item->jenis_pmks}}</td>
             <td>{{$item->jenis_kelamin}}</td>
             <td>{{$item->alamat}}</td>
             <td>

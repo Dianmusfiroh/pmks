@@ -13,7 +13,7 @@
     @csrf
     @endsection
     @section('card-body')
-    <div class="form-group row">
+    {{--  <div class="form-group row">
         <div class="label col-md-3">Jenis PMKS</div>
         <div class="col-md-9">
             <select name="jenis_pmks" id="jenis_pmks" class="form-control">
@@ -44,9 +44,8 @@
                 <option value="Keluarga Bemasalah Sosial Psikologis">Keluarga Bemasalah Sosial Psikologis</option>
                 <option value="Komunitas Adat Terpencil">Komunitas Adat Terpencil</option>
             </select>
-            {{--  <input type="text" name="jenis_pmks" id="jenis_pmks" class="form-control mt-2" placeholder="Masukan Jenis PMKS">  --}}
         </div>
-    </div>
+    </div>  --}}
     <div class="form-group row">
         <div class="label col-md-3">Nama Lengkap</div>
         <div class="col-md-9">
@@ -90,6 +89,18 @@
         </div>
     </div>
     <div class="form-group row">
+        <div class="label col-md-3">Kota/Kabupaten</div>
+        <div class="col-md-9">
+            <input type="text" name="kota" id="kota" class="form-control mt-2" placeholder="Masukan Kota">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Provinsi</div>
+        <div class="col-md-9">
+            <input type="text" name="provinsi" id="provinsi" class="form-control mt-2" placeholder="Masukan provinsi">
+        </div>
+    </div>
+    <div class="form-group row">
         <div class="label col-md-3">Jenis Kelamin</div>
         <div class="col-md-9">
             <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
@@ -99,6 +110,11 @@
             </select>
         </div>
     </div>
-
+    <div class="form-group row">
+        <div class="label col-md-3">ID DTKS</div>
+        <div class="col-md-9">
+            <input type="text" name="id_dtks" id="id_dtks" class="form-control mt-2" placeholder="Masukan ID DTKS">
+        </div>
+    </div>
 
     @endsection

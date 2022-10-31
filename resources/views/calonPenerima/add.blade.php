@@ -21,15 +21,193 @@
     </div>
     <div class="form-group row">
         <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-4">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+            
+        </div>
+        <input type="text" name="ket_jenis_pmks" class="col-md-5 form-control">
+
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis Disabilitas</div>
         <div class="col-md-9">
-            <input type="text" name="jenis_pmks" id="jenis_pmks" class="form-control mt-2" placeholder="Masukan Jenis PMKS">
+            <select name="id_jenis_disabilitas" class="form-control" id="id_jenis_disabilitas">
+                <option >Pilih Jenis Disabilitas</option>
+               @foreach ($jenisDisabilitas as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
         </div>
     </div>
-
     <div class="form-group row">
-        <div class="label col-md-3">Jenis Bantuan</div>
+        <div class="label col-md-3">Spesifik Kecacatan</div>
         <div class="col-md-9">
-            <input type="text" name="jenis_bantuan" id="jenis_bantuan" class="form-control mt-2" placeholder="Masukan Jenis Bantuan">
+            <select name="id_spesific_cacat" class="form-control" id="id_spesific_cacat">
+                <option >Pilih Spesifik Kecacatan</option>
+               @foreach ($spesificKecacatan as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <label for=""></label>
+    <div class="form-group row">
+        <div class="label col-md-3">Status Rumah</div>
+        <div class="col-md-9">
+            <select name="id_status_rumah" class="form-control" id="id_status_rumah">
+                <option >Pilih Status Rumah</option>
+               @foreach ($stsRumah as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Ket Status Rumah</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Ket Status Rumah</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-9">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 

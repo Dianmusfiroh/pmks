@@ -14,12 +14,12 @@
     @method('PUT')
     @endsection
     @section('card-body')
-    <div class="form-group row">
+    {{--  <div class="form-group row">
         <div class="label col-md-3">Jenis PMKS</div>
         <div class="col-md-9">
             <input type="text" value="{{$pmks->jenis_pmks}}" name="jenis_pmks" id="jenis_pmks" class="form-control mt-2" placeholder="Masukan Jenis PMKS">
         </div>
-    </div>
+    </div>  --}}
     <div class="form-group row">
         <div class="label col-md-3">Nama Lengkap</div>
         <div class="col-md-9">
@@ -63,6 +63,18 @@
         </div>
     </div>
     <div class="form-group row">
+        <div class="label col-md-3">Kota/Kabupaten</div>
+        <div class="col-md-9">
+            <input type="text" name="kota" id="kota" value="{{$pmks->kota}}" class="form-control mt-2" placeholder="Masukan Kota/Kab">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Provinsi</div>
+        <div class="col-md-9">
+            <input type="text" name="provinsi" id="provinsi" value="{{$pmks->provinsi}}" class="form-control mt-2" placeholder="Masukan Kota/Kab">
+        </div>
+    </div>
+    <div class="form-group row">
         <div class="label col-md-3">Jenis Kelamin</div>
         <div class="col-md-9">
             <select name="jenis_kelamin" class="form-control" value="{{$pmks->jenis_kelamin}}" id="jenis_kelamin">
@@ -70,6 +82,12 @@
                 <option value="laki-laki">Laki-laki</option>
                 <option value="perempuan">Perempuan</option>
             </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">ID DTKS</div>
+        <div class="col-md-9">
+            <input type="text" name="id_dtks" id="id_dtks" value="{{$pmks->id_dtks}}" class="form-control mt-2" placeholder="Masukan Kota/Kab">
         </div>
     </div>
     @endsection

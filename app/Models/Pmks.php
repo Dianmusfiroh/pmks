@@ -11,7 +11,6 @@ class Pmks extends Model
     protected $fillable = [
         'id',
         'nama',
-        'jenis_pmks',
         'no_kk',
         'nik',
         'tgl_lahir',
@@ -19,6 +18,9 @@ class Pmks extends Model
         'kelurahan',
         'kecamatan',
         'jenis_kelamin',
+        'kota',
+        'provinsi',
+        'id_dtks',
 
     ];
 
