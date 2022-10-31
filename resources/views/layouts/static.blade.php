@@ -52,19 +52,23 @@
   <div class="sect sect--padding-top">
     <div class="container">
       <div class="row">
-
+@foreach ($data as $item )
+  
         <div class="col-md-3 col-sm-3 price-box price-box--blue">
             <div class="price-box__wrap">
               <div class="price-box__img"></div>
               <h1 class="price-box__title">
-                {{$anakTelantar? $anakTelantar : '0'}}
-
+                @php 
+                $value = App\Models\CalonPenerima::where('id_jenis_pmks' , $item->id)->pluck('id_jenis_pmks')
+                @endphp
+                {{$value->count() ? $value->count() : '0'}}
               </h1>
-              <p class="price-box__feat">Anak Terlantar(AT)</p>
+              <p class="price-box__feat">{{$item->name}}</p>
             </div>
         </div>
+        @endforeach
 
-        <div class="col-md-3 col-sm-3 price-box price-box--purple">
+        {{--  <div class="col-md-3 col-sm-3 price-box price-box--purple">
             <div class="price-box__wrap">
               <div class="price-box__img"></div>
               <h1 class="price-box__title">
@@ -218,8 +222,6 @@
 
             </div>
         </div>
-
-
         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
             <div class="price-box__wrap">
               <div class="price-box__img"></div>
@@ -340,7 +342,7 @@
               <p class="price-box__feat">Komunitas Adat Terpencil</p>
 
             </div>
-        </div>
+        </div>  --}}
 
       </div>
     </div>
