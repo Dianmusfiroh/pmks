@@ -64,10 +64,12 @@ Route::resource('assessment/adltransfer', AdlTransferController::class);
 Route::resource('assessment/kppk', KppkController::class);
 Route::resource('assessment/uppk', UppkController::class);
 Route::resource('assessment/score', ScoreController::class);
-
+Route::get('search', [CalonPenrimaController::class, 'search']);
+Route::get('data', [CalonPenrimaController::class, 'data']);
 Route::get('laporanPMKS', [LaporanController::class, 'laporanPmks'])->name('laporanPmks');
 Route::get('laporanPenyaluran', [LaporanController::class, 'laporanPenyaluran'])->name('laporanPenyaluran');
 Route::get('laporanPenyaluran', [LaporanController::class, 'laporanPenyaluran'])->name('laporanPenyaluran');
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
+Route::get('generate', [PenerimaBantuanController::class, 'generate'])->name('generate');
 
 });
