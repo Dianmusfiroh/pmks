@@ -35,9 +35,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-})->name('beranda');
+// Route::get('/', function () {
+//     return view('landing');
+// })->name('beranda');
+Route::get('/',[GuessController::class,'beranda'])->name('beranda');
 Route::get('cekBansos',[GuessController::class,'cekBansos'])->name('cekBansos');
 Route::get('statik',[GuessController::class,'statik'])->name('statik');
 Auth::routes();
@@ -71,5 +72,6 @@ Route::get('laporanPenyaluran', [LaporanController::class, 'laporanPenyaluran'])
 Route::get('laporanPenyaluran', [LaporanController::class, 'laporanPenyaluran'])->name('laporanPenyaluran');
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 Route::get('generate', [PenerimaBantuanController::class, 'generate'])->name('generate');
+Route::get('getfilter', [PenerimaBantuanController::class, 'getfilter'])->name('getfilter');
 
 });

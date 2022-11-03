@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisPmks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data = JenisPmks::all();
+        $d = "";
+        foreach ($data as  $value) {
+            $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
+        }
         return view('home');
     }
 

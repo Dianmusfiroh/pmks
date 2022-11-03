@@ -78,6 +78,16 @@ class GuessController extends Controller
     }
     public function cekBansos()
     {
+        
         return view('layouts.cekBansos');
+    }
+    public function beranda()
+    {
+        $data = JenisPmks::all();
+        $d = "";
+        foreach ($data as  $value) {
+            $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
+        }
+        return view('layouts.gues',compact('data','d'));
     }
 }

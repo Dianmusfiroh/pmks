@@ -5,7 +5,17 @@
 @stop
 
 @section('card-header-extra')
+<div class="col-2 float-right " >
+    <select name="filter" id="filter" class="form-control">
+        <option value="0">Filter Jenis</option>
+        @foreach ($jenisPmks as $item)
+    <option value="{{$item->id}}">{{$item->name}}</option>
+            
+        @endforeach
+    </select>
+</div>
  <div class="float-right">
+   
     <a onclick="generate()" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-plus"></i>
         Generate Data</a>
 </div>
@@ -94,6 +104,54 @@
       
     });
 };
+$(function(){
+
+    $("#filter").change(function(){
+        var status = this.value;
+        if (status == 0) {
+          location.reload();
+        } else {
+            var table = $('#myTable').DataTable({
+                "destroy": true,
+                "ajax": {
+                    "url": "{{ route('getfilter') }}",
+                    "data":{"id":status},
+                    "dataSrc": function(json) {
+                        return json.data;
+                    }
+                },
+                "columns": [
+        
+                    {
+                        "data": "DT_RowIndex",
+                        "name": "DT_RowIndex"
+                    },
+                    {
+                        "data": "nama"
+                    },
+                    {
+                        "data": "no_kk"
+                    },
+                    {
+                        "data": "nik"
+                    },
+                    {
+                        "data": "jenis_pmks"
+                    },
+                    {
+                        "data": "status"
+                    },
+                    
+                ],
+              
+            });  
+        }
+       
+   });
+});
+   
+
+
 </script>
 @include('layouts.script.delete')
 @endsection

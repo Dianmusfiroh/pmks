@@ -6,7 +6,6 @@
     <meta name="theme-color" content="#1885ed">
     <title>PMKS - Homepage</title>
 </head>
-
   <body>
   <header class="header">
     <div class="container header__container">
@@ -22,48 +21,335 @@
       <nav id="navbar" class="header__nav collapse">
         <ul class="header__elenco">
           <li class="header__el"><a href="{{ route('beranda') }}" class="header__link">Home</a></li>
-          <li class="header__el"><a href="{{ route('statik') }}" class="header__link">Statistik</a></li>
-          <li class="header__el"><a href="{{ route('cekBansos') }}" class="header__link">Cek Bansos</a></li>
+          <li class="header__el"><a href="#statik" class="header__link">Statistik</a></li>
+          {{--  <li class="header__el"><a href="{{ route('cekBansos') }}" class="header__link">Cek Bansos</a></li>  --}}
           <li class="header__el header__el--blue">
             @if (Route::has('login'))
                 @auth
                     <a href="{{ url('/home') }}" class="btn btn--white">Home</a></li>
-
-                    {{-- <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a> --}}
                 @else
-                    {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a> --}}
                     <a href="{{ route('login') }}" class="btn btn--white">Masuk</a></li>
-
                     @if (Route::has('register'))
-                    {{-- <a href="{{ route('register') }}" class="btn btn--white">register</a></li> --}}
-
-                        {{-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
                     @endif
                 @endauth
             </div>
         @endif
-
         </ul>
       </nav>
     </div>
       </div>
   </header>
-
-
- <div class="row row--margin">
+ <div class="row row--margin " >
       <div style="margin-top: 10%" class="col-md-5 article-pre__col row__title">
           <h2 class="row--text-center">
             <h1 class="site__title ">Sistem Informasi Penyandang Masalah Kesejateraan Sosial</h1>
           </h2>
       </div>
-
           <div class="col-md-7 article-pre__col">
           <div class="article-pre__img article-pre__img--second"></div>
-
       </div>
    </div>
-
-
+   <div id="statik" style="margin-top:10rem">
+   <h1 class="site__title mb-1">Statistik Data PMKS Kota Gorontalo</h1>
+   <div class="sect sect--padding-top">
+     <div class="container">
+       <div class="row">
+         @foreach ($data as $item )
+   
+         <div class="col-md-3 col-sm-3 price-box price-box--blue">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 @php 
+                 $value = App\Models\CalonPenerima::where('id_jenis_pmks' , $item->id)->pluck('id_jenis_pmks')
+                 @endphp
+                 {{$value->count() ? $value->count() : '0'}}
+               </h1>
+               <p class="price-box__feat">{{$item->name}}</p>
+             </div>
+         </div>
+         @endforeach
+ 
+         {{--  <div class="col-md-3 col-sm-3 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakJalanan? $AnakJalanan : '0'}}
+               </h1>
+               <p class="price-box__feat">Anak Jalanan(AJ)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3  price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$LanjutUsiaTerlantar? $LanjutUsiaTerlantar : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Lanjut Usia Terlantar</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3  price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$TunaSusila? $TunaSusila : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Tuna Susila</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$Gelandangan? $Gelandangan : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Gelandangan</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$Pengemis? $Pengemis : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Pengemis</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 price-box mt-5 price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$Pemulung? $Pemulung : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Pemulung</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KelompokMinoritas? $KelompokMinoritas : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Kelompok Minoritas</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakBalitaTerlantar? $AnakBalitaTerlantar : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Anak Balita Terlantar(ABT)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakBerhadapanDenganHukum? $AnakBerhadapanDenganHukum : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">
+                 Anak Berhadapan Dengan Hukum(ABH)
+               </p>
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 price-box mt-5 price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakDenganDisabilitas? $AnakDenganDisabilitas : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Anak Dengan Disabilitas</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakYangMenjadiKorbanTindakKekerasan? $AnakYangMenjadiKorbanTindakKekerasan : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Anak Yang Menjadi Korban Tindak Kekerasan(AKTK)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$AnakYangMemerlukanPerlindunganKhusus? $AnakYangMemerlukanPerlindunganKhusus : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Anak Yang Memerlukan Perlindungan Khusus</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$BekasWargaBinaanPemasyarakatan? $BekasWargaBinaanPemasyarakatan : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Bekas Warga Binaan Pemasyarakatan(EKS NAPI)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 price-box mt-5 price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$PenyandangCacatDisabilitas? $PenyandangCacatDisabilitas : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Penyandang Cacat Disabilitas(PCD)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$OrangDenganHIV? $OrangDenganHIV : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Orang Dengan HIV/AIDS</p>
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box  price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KorbanPenyahgunaanNapza? $KorbanPenyahgunaanNapza : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Korban Penyalahgunaan Napza</p>
+ 
+             </div>
+         </div>
+ 
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KorbanTindakKekerasan? $KorbanTindakKekerasan : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Korban Tindak Kekerasan(KTK)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$PekerjaMigranBermasalahSosial? $PekerjaMigranBermasalahSosial : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Pekerja Migran Bermasalah Sosial</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 price-box mt-5 price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KorbanBencanaAlam? $KorbanBencanaAlam : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Korban Bencana Alam(KBA)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KorbanBencanaSosial? $KorbanBencanaSosial : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Korban Bencana Sosial(KBS)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$PerempuanRawanSosialEkonomi? $PerempuanRawanSosialEkonomi : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Perempuan Rawan Sosial Ekonomi(PRSE)</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$FakirMiskin? $FakirMiskin : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Fakir Miskin</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KorbanTrffking? $KorbanTrffking : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Korban Trfficking </p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 price-box mt-5 price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KeluargaBemasalahSosialPsikologis? $KeluargaBemasalahSosialPsikologis : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Keluarga Bermasalah Sosial Psikologis</p>
+ 
+             </div>
+         </div>
+         <div class="col-md-3 col-sm-3 mt-5 price-box price-box--purple">
+             <div class="price-box__wrap">
+               <div class="price-box__img"></div>
+               <h1 class="price-box__title">
+                 {{$KomunitasAdatTerpencil? $KomunitasAdatTerpencil : '0'}}
+ 
+               </h1>
+               <p class="price-box__feat">Komunitas Adat Terpencil</p>
+ 
+             </div>
+         </div>  --}}
+ 
+       </div>
+     </div>
+   </div>
+  </div>
 
 
   <footer class="footer">

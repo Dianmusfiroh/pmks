@@ -23,7 +23,7 @@
         <ul class="header__elenco">
             <li class="header__el"><a href="{{ route('beranda') }}" class="header__link">Home</a></li>
             <li class="header__el"><a href="{{ route('statik') }}" class="header__link">Statistik</a></li>
-            <li class="header__el"><a href="{{ route('cekBansos') }}" class="header__link">Cek Bansos</a></li>
+            {{--  <li class="header__el"><a href="{{ route('cekBansos') }}" class="header__link">Cek Bansos</a></li>  --}}
           <li class="header__el header__el--blue">
             @if (Route::has('login'))
                 @auth
@@ -48,11 +48,11 @@
     </div>
       </div>
   </header>
-        <h1 class="site__title mb-1">Statistik Data PMKS Kota Gorontalo</h1>
+<h1 class="site__title mb-1">Statistik Data PMKS Kota Gorontalo</h1>
   <div class="sect sect--padding-top">
     <div class="container">
       <div class="row">
-@foreach ($data as $item )
+        @foreach ($data as $item )
   
         <div class="col-md-3 col-sm-3 price-box price-box--blue">
             <div class="price-box__wrap">

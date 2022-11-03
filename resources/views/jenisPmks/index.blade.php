@@ -5,7 +5,9 @@
 @stop
 
 @section('card-header-extra')
+
  <div class="float-right">
+    
     <a href="{{ route($modul.'.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-plus"></i>
         Tambah Data</a>
 </div>
@@ -22,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($jenisDisabilitas as $key => $item)
+        @foreach ($jenisPmks as $key => $item)
         <tr>
             <td>{{++$key}}</td>
             <td>{{$item->name}}</td>
