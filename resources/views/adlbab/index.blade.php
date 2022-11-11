@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content_header')
-<h1>{{ Str::title(Str::replaceArray('-',[' '],'Adl Mandi' ?? '')) }}</h1>
+<h1>{{ Str::title(Str::replaceArray('-',[' '],'Adl BAB' ?? '')) }}</h1>
 @stop
 
 @section('card-header-extra')

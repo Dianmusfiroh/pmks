@@ -39,7 +39,6 @@
             <td>{{++$key}}</td>
             <td>{{$item->score}}</td>
             <td>
-                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->name }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
                 <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
                     data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
                     Delete</a>

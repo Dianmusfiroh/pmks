@@ -275,19 +275,20 @@ return [
             'url'  => 'penerimaBantuan/',
             'icon' => 'fas fa-fw fa-user',
         ],
+       // [
+         //   'can'  => 'isAdmin',
+           // 'text' => 'Laporan Data PMKS',
+           // 'url'  => 'laporanPMKS',
+            //'icon' => 'fas fa-fw fa-user',
+        //],
+        //[
+          //  'can'  => 'isAdmin',
+           // 'text' => 'Laporan Data Penyaluran',
+            //'url'  => 'laporanPenyaluran',
+           // 'icon' => 'fas fa-fw fa-user',
+       // ],
         [
-            'can'  => 'isAdmin',
-            'text' => 'Laporan Data PMKS',
-            'url'  => 'laporanPMKS',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'can'  => 'isAdmin',
-            'text' => 'Laporan Data Penyaluran',
-            'url'  => 'laporanPenyaluran',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
+	    'can'     => 'isAdmin',
             'text'    => 'Assessment',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [

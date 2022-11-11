@@ -14,10 +14,10 @@
     @endsection
     @section('card-body')
     <div class="form-group row">
-        <div class="label col-md-3">Nik Guru</div>
+        <div class="label col-md-3">Jenis PMKS</div>
         <div class="col-md-9">
             <select name="id_pmks" id="pesertaPMKS" class="form-control" >
-
+		<option>Nama Peserta</option>
             </select>
         </div>
     </div>
@@ -32,7 +32,8 @@
             </select>
             
         </div>
-        <input type="text" name="ket_jenis_pmks" id="ket_jenis_pmks" class="col-md-5 form-control">
+        <input type="text" name="ket_jenis_pmks" placeholder="Keterangan Jenis PMKS" id="ket_jenis_pmks" class="col-md-5 
+form-control">
 
     </div>
     <div class="form-group row">
