@@ -223,8 +223,6 @@ class CalonPenrimaController extends Controller
         $t = Pmks::all();
         $response = array();
         $products=DB::table('t_pmks')->where('nama','LIKE','%'.$search."%")->get();
-
-     
         if ($products->count() > 0) {
             foreach ($products as $gtt) {
                     $response[] = array(

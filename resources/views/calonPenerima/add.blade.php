@@ -196,8 +196,6 @@ form-control">
         <script>
             $( "#pesertaPMKS" ).select2({
                 ajax: {
-
-           
                     url: "{{url('search')}}",
                     dataType: 'json',
                     delay: 250,
@@ -214,7 +212,6 @@ form-control">
                     },
                     cache: true
                 }
-
             });
         </script>
     @endsection
