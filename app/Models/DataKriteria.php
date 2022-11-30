@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kppk extends Model
+class DataKriteria extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
-        'name',
+        'nama_kriteria',
         'value',
+        'alias',
     ];
 
-    protected $table = 'kppk';
+    protected $table = 't_data_kriteria';
     public $timestamps = false;
 }

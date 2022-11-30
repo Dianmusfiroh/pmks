@@ -21,7 +21,7 @@ class PenerimaBantuanController extends Controller
     {
         $modul = $this->modul;
         $jenisPmks = JenisPmks::all();
-        $penerima = DB::select("SELECT DISTINCT p.nama, p.no_kk, p.nik ,jp.name AS jenis_pmks, hs.status FROM `t_hasil_score` hs, t_calon_penerima cp, t_pmks p, JenisPmks jp WHERE hs.id_calon_penerima = cp.id AND cp.id_pmks = p.id AND jp.id = cp.id_jenis_pmks");
+        $penerima = DB::select("SELECT DISTINCT p.nama, p.no_kk, p.nik ,jp.name AS jenis_pmks, hs.status FROM `t_hasil_score` hs, t_calon_penerima cp, t_pmks p, JenisPmks jp WHERE hs.status='lolos' AND hs.id_calon_penerima = cp.id AND cp.id_pmks = p.id AND jp.id = cp.id_jenis_pmks");
         return view('penerimaBantuan.index',compact('modul','penerima','jenisPmks'));
 
     }
@@ -29,22 +29,36 @@ class PenerimaBantuanController extends Controller
     {
         $modul = $this->modul;
         return view('penerimaBantuan.add',compact('modul'));
-
     }
     public function generate(Request $request)
     {
-        $get = DB::select('SELECT cp.id, (jp.value+jd.value+sk.value+sr.value+skk.value+ma.value+m.value+pd.value+pa.value+ba.value+ksr.value+ta.value+k.value+ub.value) AS total FROM `t_calon_penerima` cp, t_pmks p, JenisPmks jp, JenisDisabilitas jd,spesifikasiKecatatan sk,statusRumahstp sr,statusKeberadaanKeluargastp skk, makanAdl ma, mandiAdl m , perawatanDiriAdl pd, pakaianAdl pa, babAdl ba, ketstatusRumahstp ksr, transferAdl ta, kppk k, usulanBantuan ub WHERE cp.id_pmks = p.id AND cp.id_jenis_pmks = jp.id AND cp.id_uppk = ub.id and cp.id_jenis_disabilitas = jd.id AND cp.id_spesific_cacat = sk.id AND sr.id = cp.id_status_rumah AND skk.id = cp.id_status_keberadaan_keluarga AND cp.id_adl_bab = ba.id AND ma.id = cp.id_adl_makan AND m.id =cp.id_adl_mandi AND cp.id_adl_perawatan =pd.id AND cp.id_adl_pakaian = pa.id AND ksr.id = cp.id_ket_status_rumah AND ta.id =cp.id_adl_transfer AND k.id = cp.id_kppk GROUP BY cp.id_pmks');
+        
+
+        $get = DB::select('SELECT cp.id , (jp.value+jd.value+sk.value+sr.value+skk.value+ma.value+m.value+pd.value+pa.value+ba.value+ksr.value+ta.value+k.value+ub.value) AS total FROM `t_calon_penerima` cp, t_pmks p, JenisPmks jp, JenisDisabilitas jd,spesifikasiKecatatan sk,statusRumahstp sr,statusKeberadaanKeluargastp skk, makanAdl ma, mandiAdl m , perawatanDiriAdl pd, pakaianAdl pa, babAdl ba, ketstatusRumahstp ksr, transferAdl ta, kppk k, usulanBantuan ub WHERE cp.id_pmks = p.id AND cp.id_jenis_pmks = jp.id AND cp.id_uppk = ub.id and cp.id_jenis_disabilitas = jd.id AND cp.id_spesific_cacat = sk.id AND sr.id = cp.id_status_rumah AND skk.id = cp.id_status_keberadaan_keluarga AND cp.id_adl_bab = ba.id AND ma.id = cp.id_adl_makan AND m.id =cp.id_adl_mandi AND cp.id_adl_perawatan =pd.id AND cp.id_adl_pakaian = pa.id AND ksr.id = cp.id_ket_status_rumah AND ta.id =cp.id_adl_transfer AND k.id = cp.id_kppk GROUP BY cp.id_pmks');
         $batasScore = Score::first();
+        
             foreach ($get as  $value) {
-                if ($value->total > $batasScore->score) {
+                $datascore = ScoreHasil::where('id_calon_penerima',$value->id)->select('id_calon_penerima')->get();
+               foreach ($datascore as $key ) {
+                if ($key->id_calon_penerima == $value->id) {
+                    if ($value->total > $batasScore->score) {
+                        $post = ScoreHasil::create([
+                            'id_calon_penerima' => $value->id,
+                            'total' => $value->total,
+                            'status' =>"Lolos",
+                
+                        ]);
+                    }
                     $post = ScoreHasil::create([
                         'id_calon_penerima' => $value->id,
                         'total' => $value->total,
-                        'status' =>"Lolos",
+                        'status' =>"Tidak Lolos",
             
                     ]);
-                }
-                
+               }else{
+               
+            }
+               }
             }
         $penerima = DB::select("SELECT DISTINCT cp.id, p.nama, p.no_kk, p.nik ,jp.name AS jenis_pmks, hs.status FROM `t_hasil_score` hs, t_calon_penerima cp, t_pmks p, JenisPmks jp WHERE hs.id_calon_penerima = cp.id AND cp.id_pmks = p.id AND jp.id = cp.id_jenis_pmks;");
       

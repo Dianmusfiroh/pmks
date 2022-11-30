@@ -26,6 +26,12 @@ class UserSeeder extends Seeder
             'role' => 'kecamatan',
             'password' => bcrypt('12345678'),
         ]);
+        $admin = User::create([
+            'name' => 'Dinsos',
+            'email' => 'dinsos@dinsos.id',
+            'role' => 'dinsos',
+            'password' => bcrypt('12345678'),
+        ]);
 
     }
 }

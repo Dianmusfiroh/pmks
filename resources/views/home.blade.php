@@ -16,7 +16,7 @@
         </div>
     </div>
     {{--  <bphutton id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>  --}}
-
+    @canany(['isAdmin','isKecamatan'])
     <div class="row">
         <div class="col-lg-4">
             <div class="info-box ">
@@ -46,6 +46,8 @@
             </div>
         </div>
     </div>
+    @endcan
+
 @stop
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

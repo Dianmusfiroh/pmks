@@ -257,7 +257,7 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'can'  => ['isKecamatan','isAdmin'],
+            'can'  => ['isKecamatan','isAdmin','isDinsos'],
             'text' => 'Data PMKS',
             'url'  => 'pmks',
             'icon' => 'fas fa-fw fa-lock',
@@ -275,18 +275,39 @@ return [
             'url'  => 'penerimaBantuan/',
             'icon' => 'fas fa-fw fa-user',
         ],
-       // [
-         //   'can'  => 'isAdmin',
-           // 'text' => 'Laporan Data PMKS',
-           // 'url'  => 'laporanPMKS',
-            //'icon' => 'fas fa-fw fa-user',
-        //],
-        //[
-          //  'can'  => 'isAdmin',
-           // 'text' => 'Laporan Data Penyaluran',
-            //'url'  => 'laporanPenyaluran',
-           // 'icon' => 'fas fa-fw fa-user',
-       // ],
+        [
+            'can'  => 'isAdmin',
+            'text' => 'Data Kriteria',
+            'url'  => 'dataKriteria/',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+       [
+           'can'  => 'isAdmin',
+           'text' => 'Laporan Data PMKS',
+           'url'  => 'laporanPMKS',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+           'can'  => 'isAdmin',
+           'text' => 'Laporan Data Penyaluran',
+            'url'  => 'laporanPenyaluran',
+           'icon' => 'fas fa-fw fa-user',
+       ],
+       [
+        'can'  => 'isAdmin',
+        'text' => 'Nilai',
+        'icon' => 'fas fa-fw fa-user',
+        'submenu' => [
+            [
+                'text' => 'Nilai Utility',
+                'url'  => 'nilai/utility',
+            ],
+            [
+                'text' => 'Nilai Hasil',
+                'url'  => 'nilai/hasil',
+            ]
+        ],
+    ],
         [
 	    'can'     => 'isAdmin',
             'text'    => 'Assessment',

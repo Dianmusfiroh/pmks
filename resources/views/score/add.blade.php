@@ -16,6 +16,17 @@
    
 
     <div class="form-group row">
+        <div class="label col-md-3">Nama Kriteria</div>
+        <div class="col-md-9">
+            <select name="id_data_kriteria" class="form-control" id="id_data_kriteria">
+                @foreach ($dataKriteria as $item )
+                <option value="{{$item->id}}">{{$item->nama_kriteria }}</option>
+                @endforeach
+
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
         <div class="label col-md-3">Nilai</div>
         <div class="col-md-9">
             <input type="text" name="score" id="score" class="form-control mt-2" placeholder="Masukan Batasan Score">
@@ -23,3 +34,4 @@
     </div>
 
     @endsection
+    

@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content_header')
-<h1>{{ Str::title(Str::replaceArray('-',[' '],'Batasan Score' ?? '')) }}</h1>
+<h1>{{ Str::title(Str::replaceArray('-',[' '],'Data Kriteria' ?? '')) }}</h1>
 @stop
 
 @section('card-header-extra')
@@ -29,19 +29,19 @@
     <thead>
         <tr>
             <th style="width: 10%;">No</th>
-            <th>Nama Kategori</th>
-            <th>Score</th>
-            <th>Normalisasi</th>
+            <th>Alias</th>
+            <th>Nama Kriteria</th>
+            <th>Nilai</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($score as $key => $item)
+        @foreach ($data as $key => $item)
         <tr>
             <td>{{++$key}}</td>
+            <td>{{$item->alias}}</td>
             <td>{{$item->nama_kriteria}}</td>
-            <td>{{$item->score}} %</td>
-            <td>{{$item->score/100}} </td>
+            <td>{{$item->value}}</td>
             <td>
                 <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
                     data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
@@ -59,9 +59,11 @@
 @section('js')
 <script>
     $("#myTable").DataTable({
-                    "autoWidth": false,
-                    "responsive": true
-                });
+        "autoWidth": false,
+        "responsive": true,
+        "paging": true,
+        "ordering": false,
+    });
 </script>
 @include('layouts.script.delete')
 @endsection

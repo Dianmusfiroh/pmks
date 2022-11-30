@@ -4,12 +4,16 @@
 <h1>{{ Str::title(Str::replaceArray('-',[' '],'Data PMKS' ?? '')) }}</h1>
 @stop
 
+@canany(['isAdmin','isKecamatan'])
+    
 @section('card-header-extra')
  <div class="float-right">
     <a href="{{ route($modul.'.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-plus"></i>
         Tambah Data</a>
 </div>
 @endsection
+@endcan
+
 @section('card-body')
 <div class="table-responsive">
 <table class="table  table-bordered table-striped table-sm text-center" id="myTable">
@@ -26,6 +30,8 @@
         </tr>
     </thead>
     <tbody>
+        @canany(['isAdmin','isKecamatan'])
+            
         @foreach ($pmks as $key => $item )
         <tr>
             <td>{{++$key}}</td>
@@ -43,6 +49,30 @@
             </td>
         </tr>
         @endforeach
+        @endcan
+
+        @can('isDinsos')
+        @foreach ($pmksKonfirmasi as $key => $item )
+        <tr>
+            <td>{{++$key}}</td>
+            <td>{{$item->nama}}</td>
+            <td>{{$item->no_kk}}</td>
+            <td>{{$item->nik}}</td>
+            <td>{{$item->tgl_lahir}}</td>
+            <td>{{$item->jenis_kelamin}}</td>
+            <td>{{$item->alamat}}</td>
+            <td>
+                @if ($item->status == 'konfirmasi')
+                <a href="{{ route('lihat', $item->id) }}" title="{{ $item->nama }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Lihat</a>
+                    
+                @else
+                    {{$item->status}}
+                @endif
+
+            </td>
+        </tr>
+        @endforeach
+        @endcan
 
     </tbody>
 </table>
@@ -55,6 +85,8 @@
                     "autoWidth": false,
                     "responsive": true
                 });
+
+ 
 </script>
 @include('layouts.script.delete')
 @endsection

@@ -14,8 +14,10 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\JenisPmksController;
 use App\Http\Controllers\JenisDisabilitasController;
 use App\Http\Controllers\CalonPenrimaController;
+use App\Http\Controllers\DataKriteriaController;
 use App\Http\Controllers\GuessController;
 use App\Http\Controllers\KppkController;
+use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\SpesificKecacatanController;
 use App\Http\Controllers\StpKetStatusRumahController;
@@ -49,6 +51,7 @@ Route::resource('pmks', PmksController::class);
 Route::resource('kecamatan', KecamatanController::class);
 Route::resource('penerimaBantuan', PenerimaBantuanController::class);
 Route::resource('calonPenerima', CalonPenrimaController::class);
+Route::resource('dataKriteria', DataKriteriaController::class);
 Route::resource('assessment/jenisPmks', JenisPmksController::class);
 
 Route::resource('assessment/jenisDisabilitas', JenisDisabilitasController::class);
@@ -73,5 +76,12 @@ Route::get('laporanPenyaluran', [LaporanController::class, 'laporanPenyaluran'])
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 Route::get('generate', [PenerimaBantuanController::class, 'generate'])->name('generate');
 Route::get('getfilter', [PenerimaBantuanController::class, 'getfilter'])->name('getfilter');
+Route::get('pmks/{pmk}/lihat', [PmksController::class, 'lihat'])->name('lihat');
+Route::put('status/{pmk}',[PmksController::class, 'status'])->name('status');
+Route::get('nilai/utility', [NilaiController::class, 'utility'])->name('utility');
+Route::get('nilai/hasil', [NilaiController::class, 'hasil'])->name('hasil');
+Route::get('nilai/getHasil', [NilaiController::class, 'getHasil'])->name('getHasil');
+
+
 
 });

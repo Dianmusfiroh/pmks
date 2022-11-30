@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScoreController extends Controller
 {
@@ -14,24 +15,29 @@ class ScoreController extends Controller
     public function index()
     {
         $modul = $this->modul;
-      $score = Score::all();
+      $score = DB::select("SELECT s.*, dk.nama_kriteria FROM `t_score` s, t_data_kriteria dk WHERE dk.id = s.id_data_kriteria");
       $scoreCount = Score::count();
+        // dd($score);
         return view('score.index',compact('modul','score','scoreCount'));
 
     }
     public function create()
     {
         $modul = $this->modul;
-        return view('score.add',compact('modul'));
+        $dataKriteria = DB::table('t_data_kriteria')->get();
+
+        return view('score.add',compact('modul','dataKriteria'));
 
     }
     public function store(Request $request )
     {
         $this->validate($request, [
+            'id_data_kriteria' => 'required',
             'score' => 'required',
 
         ]);
         $post = Score::create([
+            'id_data_kriteria' => $request->id_data_kriteria,
             'score' => $request->score,
 
 
@@ -92,6 +98,7 @@ class ScoreController extends Controller
     public function destroy(Request $request,$id)
     {
         $post = Score::findOrFail($id);
+        // dd($post);
         $post->delete();
 
         if ($post) {

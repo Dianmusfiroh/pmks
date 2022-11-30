@@ -21,6 +21,7 @@ class Pmks extends Model
         'kota',
         'provinsi',
         'id_dtks',
+        'status',
 
     ];
 

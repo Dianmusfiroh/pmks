@@ -5,41 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Pmks;
+
 class PmksController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->modul = 'pmks';
-
     }
     public function index()
     {
         $modul = $this->modul;
         $pmks = Pmks::all();
-        return view('pmks.index',compact('modul','pmks'));
-
+        $pmksKonfirmasi = Pmks::where('status', 'konfirmasi')->get();
+        return view('pmks.index', compact('modul', 'pmks', 'pmksKonfirmasi'));
     }
     public function create()
     {
         $modul = $this->modul;
-        return view('pmks.add',compact('modul'));
-
+        return view('pmks.add', compact('modul'));
     }
-    public function store(Request $request )
+    public function store(Request $request)
     {
-       
-    
         $this->validate($request, [
-            'nama'=>'required',
-            'no_kk'=>'required',
-            'nik'=>'required',
-            'tgl_lahir'=>'required',
-            'alamat'=>'required',
-            'kelurahan'=>'required',
-            'kecamatan'=>'required',
-            'jenis_kelamin'=>'required',
-            'kota'=>'required',
-            'provinsi'=>'required',
-            'id_dtks'=>'required',
+            'nama' => 'required',
+            'no_kk' => 'required',
+            'nik' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'jenis_kelamin' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            'id_dtks' => 'required',
         ]);
         $post = Pmks::create([
             'nama' => $request->nama,
@@ -50,10 +48,10 @@ class PmksController extends Controller
             'kelurahan' =>  $request->kelurahan,
             'kecamatan' =>  $request->kecamatan,
             'jenis_kelamin' =>  $request->jenis_kelamin,
-            'kota'=>$request->kota,
-            'provinsi'=>$request->provinsi,
-            'id_dtks'=>$request->id_dtks,
-
+            'kota' => $request->kota,
+            'provinsi' => $request->provinsi,
+            'status' => 'konfirmasi',
+            'id_dtks' => $request->id_dtks,
         ]);
 
         if ($post) {
@@ -71,27 +69,27 @@ class PmksController extends Controller
                 ]);
         }
     }
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
         $pmks = Pmks::findOrFail($id);
         $modul = $this->modul;
-        return view('pmks.edit', compact('modul','pmks'));
+        return view('pmks.edit', compact('modul', 'pmks'));
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
-            'nama'=>'required',
-            'no_kk'=>'required',
-            'nik'=>'required',
-            'tgl_lahir'=>'required',
-            'alamat'=>'required',
-            'kelurahan'=>'required',
-            'kecamatan'=>'required',
-            'jenis_kelamin'=>'required',
-            'kota'=>'required',
-            'provinsi'=>'required',
-            'id_dtks'=>'required',
+            'nama' => 'required',
+            'no_kk' => 'required',
+            'nik' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'jenis_kelamin' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            'id_dtks' => 'required',
         ]);
-        // dd($request->kategori_bisnis);
         $post = Pmks::findOrFail($id);
 
         $post->update([
@@ -103,9 +101,9 @@ class PmksController extends Controller
             'kelurahan' =>  $request->kelurahan,
             'kecamatan' =>  $request->kecamatan,
             'jenis_kelamin' =>  $request->jenis_kelamin,
-            'kota'=>$request->kota,
-            'provinsi'=>$request->provinsi,
-            'id_dtks'=>$request->id_dtks,
+            'kota' => $request->kota,
+            'provinsi' => $request->provinsi,
+            'id_dtks' => $request->id_dtks,
         ]);
 
         if ($post) {
@@ -123,12 +121,44 @@ class PmksController extends Controller
                 ]);
         }
     }
+    public function status(Request $request, $id)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
 
+        $post = Pmks::findOrFail($id);
+
+        $post->update([
+            'status' => $request->status,
+        ]);
+
+        if ($post) {
+            return redirect()
+                ->route('pmks.index')
+                ->with([
+                    'success' => 'Calon Penerima Berhasil Diupdate'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+                ]);
+        }
+    }
     public function show(Request $request)
     {
         # code...
     }
-    public function destroy(Request $request,$id)
+    public function lihat(Request $request,$id)
+    {
+        $pmks = Pmks::findOrFail($id);
+        $modul = $this->modul;
+        return view('pmks.tolak', compact('modul', 'pmks'));
+    }
+    public function destroy(Request $request, $id)
     {
         $post = Pmks::findOrFail($id);
         $post->delete();
@@ -147,5 +177,4 @@ class PmksController extends Controller
                 ]);
         }
     }
-
 }
