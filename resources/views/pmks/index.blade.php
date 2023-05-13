@@ -195,11 +195,14 @@
                             } else if (row.status == 'konfirmasi' ) {
                                 return ` <span class="badge badge-pill badge-warning"> Menunggu Konfirmasi</span>`;
                             } else if (row.status == 'sukses' ) {
-                                return `<a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
+                                return `
+                                <div class="btn-group">
+                                    <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
                                 <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
                                 <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
                                     data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
-                                    </a>`;
+                                    </a>
+                                </div>`;
                         }
                     } else if (userName == 'kelurahan') {
                         if (row.status == 'ditolak' ) {
@@ -221,11 +224,13 @@
                            
                             } else if (row.status == 'sukses' ) {
                                 return `
+                                <div class="btn-group">
                                 <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
                                 <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
                                 <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
                                     data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
                                     </a>
+                                </div>
                                     `;
                         }
                     }
@@ -310,22 +315,28 @@
                             } else if (row.status == 'konfirmasi' ) {
                                 return ` <span class="badge badge-pill badge-warning"> Menunggu Konfirmasi</span>`;
                             } else if (row.status == 'sukses' ) {
-                                return `<a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
-                                <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
-                                <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
-                                    data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
-                                    </a>`;
+                                return `
+                                <div class="btn-group">
+                                    <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
+                                    <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
+                                    <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
+                                        data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
+                                    </a>
+                                </div>`;
                         }
                     } else if (userName == 'kelurahan') {
                         if (row.status == 'ditolak' ) {
                             return ` <span class="badge badge-pill badge-danger"> Ditolak</span>`;
             
                             } else if (row.status == 'konfirmasi' ) {
-                            return ` <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
-                            <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
-                            <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
+                            return ` 
+                            <div class="btn-group">
+                                <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
+                                <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
                                 data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
-                                </a>`;
+                                </a>
+                            </div>`;
                             
                         } else if (row.status == 'sukses' ) {
                             return `<a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
@@ -339,11 +350,14 @@
                             return  `<a onclick="status(${row.id})"  class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Konfirmasi</a>`;
                             } else if (row.status == 'sukses' ) {
                                 return `
-                                <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
-                                <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
-                                <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
+                                <div class="btn-group">
+
+                                    <a href="{{ url('pmks/') }}/${row.id}" id="btnShow"  class="btn btn-sm btn-info"><i class="fas fa-fw fa-eye"></i></a>
+                                    <a href="{{ url('pmks/${row.id}/edit') }}" id="btnEdit" title="" class="btn btn-sm btn-success"><i class="fas fa-fw fa-edit"></i></a>
+                                    <a href="javascript:;" data-toggle="modal" onclick="deleteData(${row.id})"
                                     data-target="#DeleteModal" class="btn btn-sm btn-danger "><i class="fas fa-fw fa-trash"></i>
                                     </a>
+                                </div>
                                     `;
                         }
                     }
