@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisDisabilitas;
 use Illuminate\Http\Request;
+Use Alert;
+use App\Models\DataMaster;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class JenisDisabilitasController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'jenisDisabilitas';
 
@@ -14,69 +18,71 @@ class JenisDisabilitasController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $jenisDisabilitas = JenisDisabilitas::all();
+        $jenisDisabilitas = DataMaster::where('jenis','jenis_disabilitas')->get();
+        // $jenisDisabilitas = JenisDisabilitas::all();
         return view('jenisDisabilitas.index',compact('modul','jenisDisabilitas'));
 
     }
     public function create()
     {
+
         $modul = $this->modul;
         return view('jenisDisabilitas.add',compact('modul'));
 
     }
+
     public function store(Request $request )
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = JenisDisabilitas::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
-
-
+            'jenis' => 'jenis_disabilitas',
         ]);
 
         if ($post) {
             return redirect()
                 ->route('jenisDisabilitas.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                    'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
                 ]);
         }
+
     }
     public function edit(Request $request,$id)
     {
-        $jenisDisabilitas = JenisDisabilitas::find($id);
+        $jenisDisabilitas = DataMaster::find($id);
         $modul = $this->modul;
         return view('jenisDisabilitas.edit', compact('modul','jenisDisabilitas'));
     }
     public function update(Request $request,$id){
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = JenisDisabilitas::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('jenisDisabilitas.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                    'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -94,20 +100,20 @@ class JenisDisabilitasController extends Controller
     }
     public function destroy(Request $request,$id)
     {
-        $post = JenisDisabilitas::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('jenisDisabilitas.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
-                ->route('Kategori.index')
+                ->route('jenisDisabilitas.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
                 ]);
         }
     }

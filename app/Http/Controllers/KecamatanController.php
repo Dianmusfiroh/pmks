@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Kecamatan;
 // use RealRashid\SweetAlert\Facades\Alert;
 Use Alert;
+use App\Models\Kelurahan;
+use Illuminate\Support\Facades\DB;
+
 class KecamatanController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'kecamatan';
 
@@ -28,15 +32,13 @@ class KecamatanController extends Controller
     public function store(Request $request )
     {
         $this->validate($request, [
+            'id' => 'required',
             'nama_kecamatan' => 'required',
-            'nama_camat'=>'required',
-            'nip'=>'required',
 
         ]);
         $post = Kecamatan::create([
+            'id' => $request->id,
             'nama_kecamatan' => $request->nama_kecamatan,
-            'nama_camat' => $request->nama_camat,
-            'nip' =>  $request->nip,
 
 
         ]);
@@ -47,7 +49,7 @@ class KecamatanController extends Controller
             // return redirect()
             //     ->route('kecamatan.index')
             //     ->with([
-            //         'success' => 'New post has been created successfully'
+            //        'success' => 'Data Berhasil Dibuat'
             //     ]);
         } else {
             return redirect('kecamatan')->with('error', 'Some problem occurred, please try again');
@@ -56,8 +58,7 @@ class KecamatanController extends Controller
             //     ->back()
             //     ->withInput()
             //     ->with([
-            //         'error' => 'Some problem occurred, please try again'
-            //     ]);
+            //        'error' => 'Terjadi Kesalahan, Coba Lagi'            //     ]);
         }
     }
     public function edit(Request $request,$id)
@@ -68,24 +69,22 @@ class KecamatanController extends Controller
     }
     public function update(Request $request,$id){
         $this->validate($request, [
+            'id' => 'required',
             'nama_kecamatan' => 'required',
-            'nama_camat'=>'required',
-            'nip'=>'required',
         ]);
         // dd($request->kategori_bisnis);
         $post = Kecamatan::findOrFail($id);
 
         $post->update([
+            'id' => $request->id,
             'nama_kecamatan' => $request->nama_kecamatan,
-            'nama_camat' => $request->nama_camat,
-            'nip' =>  $request->nip,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('kecamatan.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                     'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -104,19 +103,21 @@ class KecamatanController extends Controller
     public function destroy(Request $request,$id)
     {
         $post = Kecamatan::findOrFail($id);
+        DB::table('t_kelurahan')->where('id_kecamatan',$id)->delete();
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('kecamatan.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('kecamatan.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

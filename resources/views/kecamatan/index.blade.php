@@ -1,7 +1,11 @@
 @extends('layouts.app')
+@section('content_header')
+<h1>{{ Str::title(Str::replaceArray('-',[' '],'Data Kecamatan' ?? '')) }}</h1>
+@stop
+
 @section('card-header-extra')
  <div class="float-right">
-    <a href="{{ route($modul.'.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-plus"></i>
+    <a href="{{ route($modul.'.create') }}"  id="btnDetail"  class="btn btn-primary btn-sm"><i class="fas fa-fw fa-plus"></i>
         Tambah Data</a>
 </div>
 @endsection
@@ -11,9 +15,8 @@
     <thead>
         <tr>
             <th style="width: 10%;">No</th>
+            <th>Kode Kecamatan</th>
             <th>Nama Kecamatan</th>
-            <th>Nama Kepala Kecamatan</th>
-            <th>NIP</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -21,12 +24,11 @@
         @foreach ($kecamatan as $key => $item )
         <tr>
             <td>{{++$key}}</td>
+            <td>{{$item->id}}</td>
             <td>{{$item->nama_kecamatan}}</td>
-            <td>{{$item->nama_camat}}</td>
-            <td>{{$item->nip}}</td>
             <td>
-                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->nama }}" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
-                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})"
+                <a href="{{ route($modul.'.edit', $item->id) }}" title="{{ $item->nama }}"  id="btnEdit" class="btn btn-sm btn-success"><i class="material-icons md-edit"></i> Edit</a>
+                <a href="javascript:;" data-toggle="modal" onclick="deleteData('{{$item->id}}')"
                     data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="material-icons md-delete"></i>
                     Delete</a>
             </td>
@@ -35,14 +37,79 @@
 
     </tbody>
 </table>
+<div  id="exampleModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kecamatan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="detail_user">
+        </div>
+        </div>
+  </div>
+</div>
+<div  id="editModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Data PMKS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="detail_edit">
+        </div>
+        </div>
+  </div>
+</div>
 @endsection
 @section('plugins.Datatables', true)
 @section('js')
 <script>
     $("#myTable").DataTable({
-                    "autoWidth": false,
-                    "responsive": true
-                });
+        "autoWidth": false,
+        "responsive": true
+    });
+    $('body').on('click', '#btnDetail', function (event) {
+        event.preventDefault();
+        var me = $(this),
+            title = me.attr('title');
+            alamat = me.attr('alamat');
+            url = me.attr('href');
+        $('#modal-title').text(title);
+        $('#alamat').text(alamat);
+
+        $.ajax({
+            url: url,
+            dataType: 'html',
+            success: function (response) {
+                $('#detail_user').html(response);
+            }
+        });
+        $('#exampleModal').modal('show');
+    });
+    $('body').on('click', '#btnEdit', function (event) {
+        event.preventDefault();
+        var me = $(this),
+            title = me.attr('title');
+            alamat = me.attr('alamat');
+            url = me.attr('href');
+            console.log(url);
+        $('#modal-title').text(title);
+        $('#alamat').text(alamat);
+
+        $.ajax({
+            url: url,
+            dataType: 'html',
+            success: function (response) {
+                $('#detail_edit').html(response);
+            }
+        });
+        $('#editModal').modal('show');
+    });
 </script>
 @include('layouts.script.delete')
 @endsection

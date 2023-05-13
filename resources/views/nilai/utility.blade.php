@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content_header')
-<h1>{{ Str::title(Str::replaceArray('-',[' '],'Data Kriteria' ?? '')) }}</h1>
+<h1>{{ Str::title(Str::replaceArray('-',[' '],'Data Hasil Utility' ?? '')) }}</h1>
 @stop
 
 @section('card-body')
@@ -10,24 +10,11 @@
     <thead>
         <tr>
             <th style="width: 10%;">No</th>
-            <th>Alias</th>
-            <th>Nama Kriteria</th>
-            <th>Nilai</th>
-            <th>Nilai Utility</th>
+            <th>Nama Lengkap</th>
+            <th>Nilai Utility Hasil</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @foreach ($data as $key => $item )
-            <td>{{++$key}}</td>
-            <td>{{$item->alias}}</td>
-            <td>{{$item->nama_kriteria}}</td>
-            <td>{{$item->value}}</td>
-            <td>{{100*(100-$item->value)/(100-0)}}</td>
-
-        </tr>
-        @endforeach
-
     </tbody>
 </table>
 
@@ -35,11 +22,34 @@
 @section('plugins.Datatables', true)
 @section('js')
 <script>
-    $("#myTable").DataTable({
+    {{--  $("#myTable").DataTable({
         "autoWidth": false,
         "responsive": true,
         "paging": true,
         "ordering": false,
+    });  --}}
+    $("#myTable").DataTable({
+        "ajax": {
+            "type": "GET",
+            "url": "{{ route('getUtility') }}",
+            
+            "dataSrc": function(json) {
+                return json.data;
+            }
+        },
+        "columns": [{
+                "data": "DT_RowIndex",
+                "name": "DT_RowIndex"
+            }, {
+                "data": "nama"
+            },{
+                name: 'utility',
+                data: 'utility',
+                orderable: false,
+                searchable: false,
+            }, 
+        ],
+        
     });
-</script>
+    </script>
 @endsection

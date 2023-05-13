@@ -16,14 +16,14 @@
         </div>
     </div>
     {{--  <bphutton id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>  --}}
-    @canany(['isAdmin','isKecamatan'])
+    @canany(['isAdmin','isDinsos'])
     <div class="row">
         <div class="col-lg-4">
             <div class="info-box ">
                 <span class="info-box-icon bg-info"><i class="fas fa-user-plus"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text"></span>
-                  <span class="info-box-number"></span>
+                  <span class="info-box-text">Data PMKS</span>
+                  <span class="info-box-number">{{ $dataPMKS }}</span>
                 </div>
               </div>
             </div>
@@ -31,8 +31,17 @@
             <div class="info-box">
             <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text"></span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Kelurahan</span>
+                <span class="info-box-number">{{ $dataKelurahan }}</span>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="fas fa-user"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Kecamatan</span>
+                <span class="info-box-number">{{ $dataKecamatan }}</span>
             </div>
             </div>
         </div>
@@ -40,14 +49,58 @@
             <div class="info-box">
             <span class="info-box-icon bg-primary"><i class="fa fa-fw fa-tasks"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text"></span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Data Alternatif</span>
+                <span class="info-box-number">{{ $dataAlternatif }}</span>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-box">
+            <span class="info-box-icon bg-primary"><i class="fas fa-fw fa-user-cog"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Data User</span>
+                <span class="info-box-number">{{ $dataUser }}</span>
             </div>
             </div>
         </div>
     </div>
     @endcan
-
+    @canany(['isKonfirmasi'])
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="info-box ">
+                <span class="info-box-icon bg-info"><i class="fas fa-user-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Data PMKS</span>
+                  <span class="info-box-number">{{ $dataPMKS }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endcan
+    @canany(['isKelurahan'])
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="info-box ">
+                <span class="info-box-icon bg-info"><i class="fas fa-user-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Data PMKS</span>
+                  <span class="info-box-number">{{ $dataPMKSFilter }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-box ">
+                <span class="info-box-icon bg-primary"><i class="fas fa-user-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Data Penerima PMKS</span>
+                  <span class="info-box-number">{{ count($dataPenerimaFilter) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @endcan
 @stop
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

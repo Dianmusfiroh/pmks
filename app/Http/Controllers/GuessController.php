@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CalonPenerima;
+use App\Models\DataMaster;
 use App\Models\JenisPmks;
 use App\Models\Pmks;
 use Illuminate\Http\Request;
@@ -14,9 +15,9 @@ class GuessController extends Controller
     {
         $data = JenisPmks::all();
         $d = "";
-        foreach ($data as  $value) {
-            $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
-        }
+        // foreach ($data as  $value) {
+        //     $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
+        // }
         // dd($d);
 
         // $anakTelantar = Pmks::where('jenis_pmks','Anak Terlantar')->count('id');
@@ -83,11 +84,11 @@ class GuessController extends Controller
     }
     public function beranda()
     {
-        $data = JenisPmks::all();
-        $d = "";
-        foreach ($data as  $value) {
-            $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
-        }
-        return view('layouts.gues',compact('data','d'));
+        $data = DataMaster::where('jenis','jenis_pmks')->get();
+        // $d = "";
+        // foreach ($data as  $value) {
+        //     $d = DB::select("SELECT COUNT(*) as total FROM `t_calon_penerima` WHERE id_jenis_pmks = $value->id");
+        // }
+        return view('layouts.gues2',compact('data'));
     }
 }

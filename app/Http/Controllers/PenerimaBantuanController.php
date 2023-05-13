@@ -13,6 +13,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PenerimaBantuanController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'penerimaBantuan';
 

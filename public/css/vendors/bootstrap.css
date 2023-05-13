@@ -81,7 +81,12 @@ hr {
 hr:not([size]) {
     height: 1px;
 }
-
+.btn-indigo {
+    color: #888888;
+    background-color: #888888;
+    border-color: #888888;
+    box-shadow: none;
+  }
 h1,
 .h1,
 h2,

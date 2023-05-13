@@ -26,12 +26,12 @@
             </select>
         </div>
     </div>
-    <div class="form-group row">
+    {{--  <div class="form-group row">
         <div class="label col-md-3">Nilai</div>
         <div class="col-md-9">
             <input type="text" name="score" id="score" class="form-control mt-2" placeholder="Masukan Batasan Score">
         </div>
-    </div>
+    </div>  --}}
 
     @endsection
     

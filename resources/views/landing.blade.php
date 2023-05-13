@@ -1,1 +1,1 @@
-@extends('layouts.gues')
+@extends('layouts.gues2')

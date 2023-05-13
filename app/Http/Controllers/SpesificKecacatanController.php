@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataMaster;
 use App\Models\SpesificKecacatan;
 use Illuminate\Http\Request;
 
 class SpesificKecacatanController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'spesificKecacatan';
 
@@ -14,7 +16,7 @@ class SpesificKecacatanController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $spesificKecacatan = SpesificKecacatan::all();
+        $spesificKecacatan = DataMaster::where('jenis','spesific_kecacatan')->get();
         return view('spesificKecacatan.index',compact('modul','spesificKecacatan'));
 
     }
@@ -28,12 +30,12 @@ class SpesificKecacatanController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = SpesificKecacatan::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'spesific_kecacatan',
 
 
         ]);
@@ -42,41 +44,40 @@ class SpesificKecacatanController extends Controller
             return redirect()
                 ->route('spesificKecacatan.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                   'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                   'error' => 'Terjadi Kesalahan, Coba Lagi'                ]);
         }
     }
     public function edit(Request $request,$id)
     {
-        $spesificKecacatan = SpesificKecacatan::find($id);
+        $spesificKecacatan = DataMaster::find($id);
         $modul = $this->modul;
         return view('spesificKecacatan.edit', compact('modul','spesificKecacatan'));
     }
     public function update(Request $request,$id){
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = SpesificKecacatan::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('spesificKecacatan.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                     'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -94,20 +95,21 @@ class SpesificKecacatanController extends Controller
     }
     public function destroy(Request $request,$id)
     {
-        $post = SpesificKecacatan::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('spesificKecacatan.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('spesificKecacatan.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

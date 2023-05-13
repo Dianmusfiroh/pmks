@@ -1,6 +1,9 @@
 @extends('adminlte::page')
 @section('css')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 @stop
 @section('title')
 {{ Str::title(Str::replaceArray('-',[' '],$modul ?? '')) }}
@@ -10,9 +13,10 @@
 <h1>{{ Str::title(Str::replaceArray('-',[' '],$modultitle ?? '')) }}</h1>
 @stop --}}
 @section('content')
+
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="card-title">@yield('card-title-before') {{ Str::title(Str::replaceArray('-',[' '],$modul ?? '')) }}
+        {{--  <h3 class="card-title">@yield('card-title-before') {{ Str::title(Str::replaceArray('-',[' '],$modul ?? '')) }}  --}}
             @yield('card-title','List')</h3>
         @yield('card-header-extra')
     </div>
@@ -21,6 +25,7 @@
     <div class="card-body">
         {{-- @csrf --}}
         @yield('card-body')
+
     </div>
     <div class="card-footer">
         @hasSection ('button-save')
@@ -36,6 +41,8 @@
     @else
     <div class="card-body">
         @yield('card-body')
+        @include('sweetalert::alert')
+
     </div>
     @hasSection ('card-footer')
     <div class="card-footer">
@@ -69,8 +76,8 @@
             </div>
         </form>
     </div>
+
 </div>
-@include('sweetalert::alert')
 
 @stack('scripts')
 @stop
@@ -78,7 +85,7 @@
 @section('js')
 @yield('createupdate-app-js')
 <script>
-    $(".select2").select2();
+$(".select2").select2();
 </script>
 @endsection
 @endif

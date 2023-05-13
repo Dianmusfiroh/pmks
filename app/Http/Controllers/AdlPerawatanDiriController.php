@@ -3,37 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdlPerawatanDiri;
+use App\Models\DataMaster;
 use Illuminate\Http\Request;
 
 class AdlPerawatanDiriController extends Controller
 {
-    public function __construct(){
+    protected $modul;
+    public function __construct()
+    {
         $this->modul = 'adlPerawatanDiri';
-
     }
     public function index()
     {
         $modul = $this->modul;
-       $adlPerawatanDiri = AdlPerawatanDiri::all();
-        return view('adlPerawatanDiri.index',compact('modul','adlPerawatanDiri'));
-
+        $adlPerawatanDiri = DataMaster::where('jenis','adl_perawatan_diri')->get();
+        return view('adlPerawatanDiri.index', compact('modul', 'adlPerawatanDiri'));
     }
     public function create()
     {
         $modul = $this->modul;
-        return view('adlPerawatanDiri.add',compact('modul'));
-
+        return view('adlPerawatanDiri.add', compact('modul'));
     }
-    public function store(Request $request )
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = AdlPerawatanDiri::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'adl_perawatan_diri',
 
 
         ]);
@@ -42,41 +42,42 @@ class AdlPerawatanDiriController extends Controller
             return redirect()
                 ->route('adlPerawatanDiri.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                    'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
                 ]);
         }
     }
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
-       $adlPerawatanDiri = AdlPerawatanDiri::find($id);
+        $adlPerawatanDiri = DataMaster::find($id);
         $modul = $this->modul;
-        return view('adlPerawatanDiri.edit', compact('modul','adlPerawatanDiri'));
+        return view('adlPerawatanDiri.edit', compact('modul', 'adlPerawatanDiri'));
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = AdlPerawatanDiri::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('adlPerawatanDiri.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                    'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -92,22 +93,24 @@ class AdlPerawatanDiriController extends Controller
     {
         # code...
     }
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-        $post = AdlPerawatanDiri::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('adlPerawatanDiri.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('adlPerawatanDiri.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
-    }}
+    }
+}

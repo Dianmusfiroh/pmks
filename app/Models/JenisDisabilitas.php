@@ -16,4 +16,7 @@ class JenisDisabilitas extends Model
 
     protected $table = 'JenisDisabilitas';
     public $timestamps = false;
+    public function pmks() {
+        return $this->belongsTo(Pmks::class,'id_jenis_disabilitas', 'id');
+    }
 }

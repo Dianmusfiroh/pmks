@@ -16,4 +16,8 @@ class JenisPmks extends Model
 
     protected $table = 'JenisPmks';
     public $timestamps = false;
+    public function pmks() {
+        return $this->belongsTo(Pmks::class,'id_jenis_pmks', 'id');
+    }
+
 }

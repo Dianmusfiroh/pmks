@@ -60,7 +60,7 @@
                <div class="price-box__img"></div>
                <h1 class="price-box__title">
                  @php 
-                 $value = App\Models\CalonPenerima::where('id_jenis_pmks' , $item->id)->pluck('id_jenis_pmks')
+                 $value = App\Models\Pmks::where('id_jenis_pmks' , $item->id)->pluck('id_jenis_pmks')
                  @endphp
                  {{$value->count() ? $value->count() : '0'}}
                </h1>

@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>PMKS</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/KOTA_GORONTALO.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-indigo',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
@@ -226,6 +226,7 @@ return [
 
     'menu' => [
         // Navbar items:
+
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
@@ -244,157 +245,224 @@ return [
             'can'  => 'manage-blog',
         ],
 
-        // ['header' => 'account_settings'],
         [
             'text' => 'Dashboard',
             'url'  => 'home',
-            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'can'  => 'isKecamatan',
-            'text' => 'Data Kecamatan',
-            'url'  => 'kecamatan',
-            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['isKelurahan','isAdmin','isDinsos','isKonfirmasi'],
+            'label' =>'Master Data',
         ],
+        
         [
-            'can'  => ['isKecamatan','isAdmin','isDinsos'],
+            'can'  => ['isKelurahan','isAdmin','isDinsos','isKonfirmasi'],
             'text' => 'Data PMKS',
             'url'  => 'pmks',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'can'  => 'isAdmin',
-            'text' => 'Data Calon Penerima Bantuan',
-            'url'  => 'calonPenerima',
-            'icon' => 'fas fa-fw fa-user',
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Kelurahan',
+            'url'  => 'kelurahan',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Kecamatan',
+            'url'  => 'kecamatan',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Alternatif',
+            'url'  => 'dataAlternatif/',
+            'icon' => 'fas fa-fw fa-users',
         ],
 
         [
-            'can'  => 'isAdmin',
-            'text' => 'Data Penerima Bantuan',
-            'url'  => 'penerimaBantuan/',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'can'  => 'isAdmin',
+            'can'  => ['isAdmin','isDinsos'],
             'text' => 'Data Kriteria',
             'url'  => 'dataKriteria/',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-bars',
         ],
-       [
-           'can'  => 'isAdmin',
-           'text' => 'Laporan Data PMKS',
-           'url'  => 'laporanPMKS',
-            'icon' => 'fas fa-fw fa-user',
+
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Sub Kriteria',
+            'url'  => 'subDataKriteria/',
+            'icon' => 'fas fa-fw fa-layer-group',
         ],
         [
-           'can'  => 'isAdmin',
-           'text' => 'Laporan Data Penyaluran',
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data User',
+            'url'  => 'DataUser/',
+            'icon' => 'fas fa-fw fa-user-cog',
+        ],
+        [
+            'can'     => ['isAdmin','isDinsos'],
+                'text'    => 'Pengaturan',
+                'icon'    => 'fas fa-fw fa-share',
+                'submenu' => [
+                    [
+                        'text' => 'Jenis PMKS',
+                        'url'  => 'assessment/jenisPmks',
+                    ],
+                    [
+                        'text' => 'Jenis Disabilitas',
+                        'url'  => 'assessment/jenisDisabilitas',
+                    ],
+                    [
+                        'text' => 'Spesific Kecacatan',
+                        'url'  => 'assessment/spesificKecacatan',
+                    ],
+                    [
+                        'text'    => 'Status Tinggal PMKS',
+                        'url'     => '#',
+                        'submenu' => [
+                            [
+                                'text' => 'Status Keberadaan Keluarga',
+                                'url'  => 'assessment/StatusKeberadaanKeluarga',
+                            ],
+                            [
+                                'text'    => 'Status Rumah',
+                                'url'     => 'assessment/StatusRumah',
+                                
+                            ],
+                            [
+                                'text'    => 'Keterangan Status Rumah',
+                                'url'     => 'assessment/KeteranganStatusRumah',
+                                
+                            ],
+                        ],
+                    ],
+                    [
+                        'text'    => 'Kegiatan Sehari-hari',
+                        'url'     => '#',
+                        'submenu' => [
+                            [
+                                'text' => 'Mandi',
+                                'url'  => 'assessment/adlmandi',
+                            ],
+                            [
+                                'text'    => 'Makan',
+                                'url'     => 'assessment/adlmakan',
+                                
+                            ],
+                            [
+                                'text'    => 'Buang Air Kecil/Besar',
+                                'url'     => 'assessment/adlbab',
+                                
+                            ],
+                            [
+                                'text'    => 'Pakaian',
+                                'url'     => 'assessment/adlpakaian',
+                                
+                            ],
+                            [
+                                'text'    => 'PerawatanDiri',
+                                'url'     => 'assessment/adlPerawatanDiri',
+                                
+                            ],
+                            [
+                                'text'    => 'Transfer',
+                                'url'     => 'assessment/adltransfer',
+                                
+                            ],
+                           
+                        ],
+                    ],
+                    [
+                        'text' => 'Kepemilikan Bantuan',
+                        'url'  => 'assessment/kppk',
+                    ],
+                    [
+                        'text' => 'Usulan Bantuan',
+                        'url'  => 'assessment/uppk',
+                    ],
+                    // [
+                    //     'text' => 'Batasan Score',
+                    //     'url'  => 'assessment/score',
+                    // ],
+                ],
+        ],
+        [
+            'header' => 'SPK',
+            'can' =>['isAdmin','isDinsos']
+        ],
+
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Penilaian',
+            'url'  => 'penilaian/',
+            'icon' => 'fas fa-fw fa-edit',
+        ],
+
+
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Perhitungan',
+            'url'  => 'perhitungan/',
+            'icon' => 'fas fa-fw fa-calculator',
+        ],
+
+        [
+            'can'  => ['isAdmin','isDinsos'],
+            'text' => 'Data Hasil Akhir',
+            'url'  => 'hasil/',
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
+            'header' => 'Laporan',
+            'can' =>['isAdmin','isDinsos','isKepala']
+        ],
+
+        [
+            'can'  => ['isKelurahan','isAdmin','isDinsos','isKepala'],
+            'text' => 'Laporan Data PMKS',
+            'url'  => 'laporanPMKS',
+            'icon' => 'fas fa-fw fa-file-contract',
+        ],
+        [
+            'can'  => ['isKelurahan','isAdmin','isDinsos','isKepala'],
+            'text' => 'Laporan Data Penerima',
             'url'  => 'laporanPenyaluran',
-           'icon' => 'fas fa-fw fa-user',
-       ],
-       [
-        'can'  => 'isAdmin',
-        'text' => 'Nilai',
-        'icon' => 'fas fa-fw fa-user',
-        'submenu' => [
-            [
-                'text' => 'Nilai Utility',
-                'url'  => 'nilai/utility',
-            ],
-            [
-                'text' => 'Nilai Hasil',
-                'url'  => 'nilai/hasil',
-            ]
+            'icon' => 'fas fa-fw fa-file-contract',
         ],
-    ],
-        [
-	    'can'     => 'isAdmin',
-            'text'    => 'Assessment',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Jenis PMKS',
-                    'url'  => 'assessment/jenisPmks',
-                ],
-                [
-                    'text' => 'Jenis Disabilitas',
-                    'url'  => 'assessment/jenisDisabilitas',
-                ],
-                [
-                    'text' => 'Spesific Kecacatan',
-                    'url'  => 'assessment/spesificKecacatan',
-                ],
-                [
-                    'text'    => 'Status Tinggal PMKS',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Status Keberadaan Keluarga',
-                            'url'  => 'assessment/StatusKeberadaanKeluarga',
-                        ],
-                        [
-                            'text'    => 'Status Rumah',
-                            'url'     => 'assessment/StatusRumah',
-                            
-                        ],
-                        [
-                            'text'    => 'Keterangan Status Rumah',
-                            'url'     => 'assessment/KeteranganStatusRumah',
-                            
-                        ],
-                    ],
-                ],
-                [
-                    'text'    => 'Adl',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Mandi',
-                            'url'  => 'assessment/adlmandi',
-                        ],
-                        [
-                            'text'    => 'Makan',
-                            'url'     => 'assessment/adlmakan',
-                            
-                        ],
-                        [
-                            'text'    => 'Buang Air Kecil/Besar',
-                            'url'     => 'assessment/adlbab',
-                            
-                        ],
-                        [
-                            'text'    => 'Pakaian',
-                            'url'     => 'assessment/adlpakaian',
-                            
-                        ],
-                        [
-                            'text'    => 'PerawatanDiri',
-                            'url'     => 'assessment/adlPerawatanDiri',
-                            
-                        ],
-                        [
-                            'text'    => 'Transfer',
-                            'url'     => 'assessment/adltransfer',
-                            
-                        ],
-                       
-                    ],
-                ],
-                [
-                    'text' => 'Kppk',
-                    'url'  => 'assessment/kppk',
-                ],
-                [
-                    'text' => 'Usulan Bantuan',
-                    'url'  => 'assessment/uppk',
-                ],
-                [
-                    'text' => 'Batasan Score',
-                    'url'  => 'assessment/score',
-                ],
-            ],
-        ],
+      
+    //     [
+    //         'can'  => 'isAdmin',
+    //         'text' => 'Data Kriteria',
+    //         'url'  => 'dataKriteria/',
+    //         'icon' => 'fas fa-fw fa-user',
+    //     ],
+    //    [
+    //        'can'  => 'isAdmin',
+    //        'text' => 'Laporan Data PMKS',
+    //        'url'  => 'laporanPMKS',
+    //         'icon' => 'fas fa-fw fa-user',
+    //     ],
+    //     [
+    //        'can'  => 'isAdmin',
+    //        'text' => 'Laporan Data Penyaluran',
+    //         'url'  => 'laporanPenyaluran',
+    //        'icon' => 'fas fa-fw fa-user',
+    //    ],
+    //    [
+    //     'can'  => 'isAdmin',
+    //     'text' => 'Nilai',
+    //     'icon' => 'fas fa-fw fa-user',
+    //     'submenu' => [
+    //         [
+    //             'text' => 'Nilai Utility',
+    //             'url'  => 'nilai/utility',
+    //         ],
+    //         [
+    //             'text' => 'Nilai Hasil',
+    //             'url'  => 'nilai/hasil',
+    //         ]
+    //     ],
+    // ],
+       
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

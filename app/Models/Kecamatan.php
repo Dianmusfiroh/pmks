@@ -11,12 +11,14 @@ class Kecamatan extends Model
     protected $fillable = [
         'id',
         'nama_kecamatan',
-        'nama_camat',
-        'nip',
 
     ];
 
     protected $table = 't_kecamatan';
     public $timestamps = false;
+    protected $keyType = 'string';
+    public function Kelurahan() {
+        return $this->belongsTo(Kecamatan::class, 'id_kecamatan','id');
+    }
 
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataMaster;
 use App\Models\Kppk;
 use Illuminate\Http\Request;
 
 class KppkController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'kppk';
 
@@ -14,7 +16,7 @@ class KppkController extends Controller
     public function index()
     {
         $modul = $this->modul;
-      $kppk = Kppk::all();
+      $kppk = DataMaster::where('jenis','kppk')->get();
         return view('kppk.index',compact('modul','kppk'));
 
     }
@@ -28,12 +30,12 @@ class KppkController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = Kppk::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'kppk',
 
 
         ]);
@@ -42,41 +44,40 @@ class KppkController extends Controller
             return redirect()
                 ->route('kppk.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                   'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                   'error' => 'Terjadi Kesalahan, Coba Lagi'                ]);
         }
     }
     public function edit(Request $request,$id)
     {
-      $kppk = Kppk::find($id);
+      $kppk = DataMaster::find($id);
         $modul = $this->modul;
         return view('kppk.edit', compact('modul','kppk'));
     }
     public function update(Request $request,$id){
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = Kppk::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('kppk.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                     'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -94,20 +95,21 @@ class KppkController extends Controller
     }
     public function destroy(Request $request,$id)
     {
-        $post = Kppk::findOrFail($id);
+    $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('kppk.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('kppk.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

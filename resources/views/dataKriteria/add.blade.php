@@ -37,12 +37,12 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    {{--  <div class="form-group row">
         <div class="label col-md-3">Nilai</div>
         <div class="col-md-9">
             <input type="number" name="value" id="value" class="form-control mt-2" placeholder="Masukan Batasan Score">
         </div>
-    </div>
+    </div>  --}}
     <div class="form-group row">
         <div class="label col-md-3">Alias</div>
         <div class="col-md-9">

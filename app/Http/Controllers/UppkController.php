@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataMaster;
 use App\Models\Uppk;
 use Illuminate\Http\Request;
 
 class UppkController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'uppk';
 
@@ -14,7 +16,7 @@ class UppkController extends Controller
     public function index()
     {
         $modul = $this->modul;
-      $uppk = Uppk::all();
+      $uppk = DataMaster::where('jenis','uppk')->get();
         return view('uppk.index',compact('modul','uppk'));
 
     }
@@ -28,12 +30,12 @@ class UppkController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = Uppk::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'uppk',
 
 
         ]);
@@ -42,41 +44,40 @@ class UppkController extends Controller
             return redirect()
                 ->route('uppk.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                   'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                   'error' => 'Terjadi Kesalahan, Coba Lagi'                ]);
         }
     }
     public function edit(Request $request,$id)
     {
-      $uppk = Uppk::find($id);
+      $uppk = DataMaster::find($id);
         $modul = $this->modul;
         return view('uppk.edit', compact('modul','uppk'));
     }
     public function update(Request $request,$id){
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = Uppk::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('uppk.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                     'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -94,20 +95,21 @@ class UppkController extends Controller
     }
     public function destroy(Request $request,$id)
     {
-        $post = Uppk::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('uppk.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('uppk.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

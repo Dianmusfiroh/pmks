@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ScoreController extends Controller
 {
+    protected $modul;
     public function __construct(){
         $this->modul = 'score';
 
@@ -47,15 +48,14 @@ class ScoreController extends Controller
             return redirect()
                 ->route('score.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                   'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                   'error' => 'Terjadi Kesalahan, Coba Lagi'                ]);
         }
     }
     public function edit(Request $request,$id)
@@ -79,7 +79,7 @@ class ScoreController extends Controller
             return redirect()
                 ->route('score.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                     'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -105,13 +105,14 @@ class ScoreController extends Controller
             return redirect()
                 ->route('score.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('score.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }}

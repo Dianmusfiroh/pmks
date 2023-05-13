@@ -10,11 +10,13 @@ class DataKriteria extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'kode_kriteria',
         'nama_kriteria',
         'value',
-        'alias',
+        'jenis',
     ];
 
     protected $table = 't_data_kriteria';
     public $timestamps = false;
+
 }

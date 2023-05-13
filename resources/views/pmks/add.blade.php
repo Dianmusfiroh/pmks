@@ -1,51 +1,7 @@
 
-@extends('layouts.app')
-@section('card-title-before','New')
-@section('card-title','Form')
-@section('button-save')
-<button type="submit" class="btn btn-primary float-right ml-2" title="Save"><i class="fas fa-fw fa-save"></i>
-    Simpan</button>
-@endsection
-@section('back-button',url('pmks'))
+    <form action="{{ route($modul.'.store')}}" method="POST">
+        @csrf
 
-@section('form-create')
-<form action="{{ route($modul.'.store')}}" method="POST">
-    @csrf
-    @endsection
-    @section('card-body')
-    {{--  <div class="form-group row">
-        <div class="label col-md-3">Jenis PMKS</div>
-        <div class="col-md-9">
-            <select name="jenis_pmks" id="jenis_pmks" class="form-control">
-                <option value="Anak Balita Terlantar">Anak Balita Terlantar(ABT)</option>
-                <option value="Anak Terlantar">Anak Terlantar(AT)</option>
-                <option value="Anak Berhadapan Dengan Hukum">Anak Berhadapan Dengan Hukum(ABH)</option>
-                <option value="Anak Jalanan">Anak Jalanan(AJ)</option>
-                <option value="Anak Dengan Disabilitas">Anak Dengan Disabilitas</option>
-                <option value="Anak Yang Menjadi Korban Tindak Kekerasan">Anak Yang Menjadi Korban Tindak Kekerasan(AKTK)</option>
-                <option value="Anak Yang Memerlukan Perlindungan Khusus">Anak Yang Memerlukan Perlindungan Khusus</option>
-                <option value="Lanjut Usia Terlantar">Lanjut Usia Terlantar</option>
-                <option value="Penyandang Cacat Disabilitas">Penyandang Cacat Disabilitas(PCD)</option>
-                <option value="Tuna Susila">Tuna Susila</option>
-                <option value="Gelandangan">Gelandangan</option>
-                <option value="Pengemis">Pengemis</option>
-                <option value="Pemulung">Pemulung</option>
-                <option value="Kelompok Minoritas">Kelompok Minoritas</option>
-                <option value="Bekas Warga Binaan Pemasyarakatan">Bekas Warga Binaan Pemasyarakatan(EKS NAPI)</option>
-                <option value="Orang Dengan HIV/AIDS">Orang Dengan HIV/AIDS</option>
-                <option value="Korban Penyahgunaan Napza">Korban Penyahgunaan Napza</option>
-                <option value="Korban Trffking">Korban Trffking</option>
-                <option value="Korban Tindak Kekerasan">Korban Tindak Kekerasan(KTK)</option>
-                <option value="Pekerja Migran Bermasalah Sosial">Pekerja Migran Bermasalah Sosial</option>
-                <option value="Korban Bencana Alam">Korban Bencana Alam(KBA)</option>
-                <option value="Korban Bencana Sosial">Korban Bencana Sosial(KBS)</option>
-                <option value="Perempuan Rawan Sosial Ekonomi">Perempuan Rawan Sosial Ekonomi(PRSE)</option>
-                <option value="Fakir Miskin">Fakir Miskin</option>
-                <option value="Keluarga Bemasalah Sosial Psikologis">Keluarga Bemasalah Sosial Psikologis</option>
-                <option value="Komunitas Adat Terpencil">Komunitas Adat Terpencil</option>
-            </select>
-        </div>
-    </div>  --}}
     <div class="form-group row">
         <div class="label col-md-3">Nama Lengkap</div>
         <div class="col-md-9">
@@ -76,28 +32,28 @@
             <input type="text" name="alamat" id="alamat" class="form-control mt-2" placeholder="Masukan Alamat">
         </div>
     </div>
-    <div class="form-group row">
-        <div class="label col-md-3">Kelurahan</div>
-        <div class="col-md-9">
-            <input type="text" name="kelurahan" id="kelurahan" class="form-control mt-2" placeholder="Masukan Kelurahan">
-        </div>
-    </div>
+ 
+    <div id="kec"></div>
+
     <div class="form-group row">
         <div class="label col-md-3">Kecamatan</div>
         <div class="col-md-9">
-            <input type="text" name="kecamatan" id="kecamatan" class="form-control mt-2" placeholder="Masukan Kecamatan">
-        </div>
+            <select name="id_kecamatan" class="form-control" id="id_kecamatan">
+                <option >Pilih Kecamatan</option>
+               @foreach ($kecamatan as $item)
+               <option value="{{$item->id}}">{{$item->nama_kecamatan}}</option>
+                @endforeach
+            </select>        </div>
     </div>
     <div class="form-group row">
-        <div class="label col-md-3">Kota/Kabupaten</div>
+        <div class="label col-md-3">Kelurahan</div>
         <div class="col-md-9">
-            <input type="text" name="kota" id="kota" class="form-control mt-2" placeholder="Masukan Kota">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="label col-md-3">Provinsi</div>
-        <div class="col-md-9">
-            <input type="text" name="provinsi" id="provinsi" class="form-control mt-2" placeholder="Masukan provinsi">
+            <select name="id_kelurahan" class="form-control" id="kelurahan">
+                {{--  <option >Pilih Kelurahan</option>  --}}
+               {{--  @foreach ($kelurahan as $item)
+               <option value="{{$item->id}}">{{$item->kelurahan}}</option>
+                @endforeach  --}}
+            </select>
         </div>
     </div>
     <div class="form-group row">
@@ -116,5 +72,213 @@
             <input type="text" name="id_dtks" id="id_dtks" class="form-control mt-2" placeholder="Masukan ID DTKS">
         </div>
     </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis PMKS</div>
+        <div class="col-md-4">
+            <select name="id_jenis_pmks" class="form-control" id="id_jenis_pmks">
+                <option >Pilih Jenis PMKS</option>
+               @foreach ($jenisPmks as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+            
+        </div>
+        <input type="text" name="ket_jenis_pmks" placeholder="Keterangan Jenis PMKS" id="ket_jenis_pmks" class="col-md-5 
+form-control">
 
-    @endsection
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Jenis Disabilitas</div>
+        <div class="col-md-9">
+            <select name="id_jenis_disabilitas" class="form-control" id="id_jenis_disabilitas">
+                <option >Pilih Jenis Disabilitas</option>
+               @foreach ($jenisDisabilitas as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Spesifik Kecacatan</div>
+        <div class="col-md-9">
+            <select name="id_spesific_cacat" class="form-control" id="id_spesific_cacat">
+                <option >Pilih Spesifik Kecacatan</option>
+               @foreach ($spesificKecacatan as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <label for=""></label>
+    <div class="form-group row">
+        <div class="label col-md-3">Status Rumah</div>
+        <div class="col-md-9">
+            <select name="id_status_rumah" class="form-control" id="id_status_rumah">
+                <option >Pilih Status Rumah</option>
+               @foreach ($stsRumah as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Ket Status Rumah</div>
+        <div class="col-md-9">
+            <select name="id_ket_status_rumah" class="form-control" id="id_ket_status_rumah">
+                <option >Pilih Ket Status Rumah</option>
+               @foreach ($ketStsRumah as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Status Keberadaan Keluarga</div>
+        <div class="col-md-9">
+            <select name="id_status_keberadaan_keluarga" class="form-control" id="id_status_keberadaan_keluarga">
+                <option >Pilih Status Keberadaan Keluarga</option>
+               @foreach ($stsKeberadaanKeluarga as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <label for="">ADL</label>
+    <div class="form-group row">
+        <div class="label col-md-3">Makan</div>
+        <div class="col-md-9">
+            <select name="id_adl_makan" class="form-control" id="id_adl_makan">
+                <option >Pilih Status Makan</option>
+               @foreach ($adlMakan as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Mandi</div>
+        <div class="col-md-9">
+            <select name="id_adl_mandi" class="form-control" id="id_adl_mandi">
+                <option >Pilih Status Mandi</option>
+               @foreach ($adlMandi as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Status Perawatan Diri</div>
+        <div class="col-md-9">
+            <select name="id_adl_perawatan" class="form-control" id="id_adl_perawatan">
+                <option >Pilih Status Perawatan Diri</option>
+               @foreach ($adlPerawatanDiri as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Status Pakaian</div>
+        <div class="col-md-9">
+            <select name="id_adl_pakaian" class="form-control" id="id_adl_pakaian">
+                <option >Pilih Status Pakaian</option>
+               @foreach ($adlPakaian as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Buang Air Besar/Kecil</div>
+        <div class="col-md-9">
+            <select name="id_adl_bab" class="form-control" id="id_adl_bab">
+                <option >Pilih Status Buang Air Besar/Kecil</option>
+               @foreach ($adlBab as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Tranfer</div>
+        <div class="col-md-9">
+            <select name="id_adl_transfer" class="form-control" id="id_adl_transfer">
+                <option >Pilih Status Tranfer</option>
+               @foreach ($adlTransfer as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Kepemilikan Bantuan</div>
+        <div class="col-md-9">
+            <select name="id_kppk" class="form-control" id="id_kppk">
+                <option >Pilih Kepemilikan Bantuan</option>
+               @foreach ($kppk as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Usulan Bantuan</div>
+        <div class="col-md-9">
+            <select name="id_uppk" class="form-control" id="id_uppk">
+                <option >Pilih Usulan Bantuan</option>
+               @foreach ($uppk as $item)
+               <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="label col-md-3">Keterangan Usulan Bantuan</div>
+        <div class="col-md-9">
+            <input type="text" required class="form-control" placeholder="Masukkan Keterangan Usulan Bantuan" name="ket_uppk" id="ket_uppk">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary float-right ml-2" title="Save"><i class="fas fa-fw fa-save"></i>
+            Simpan</button>
+      </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <script>
+              $('#id_kecamatan').on('change', function() {
+                $.ajax({
+                    url: "{{ route('dataKec') }}",
+                    data: {'id_kecamatan': $(this).val() },
+                    success: function (data) {
+                        $('#kelurahan').html(data); 
+                    }
+                });
+              });
+            $(document).ready(function(){
+                var a =  $("#kec").val("Glenn Quagmire");
+
+
+                $("#myInput").on("input", function(){
+                    // Print entered value in a div box
+                    $("#result").text($(this).val());
+                    var kelurahan =$(this).val();
+
+                    
+                    {{--  console.log($(this).val());  --}}
+                });
+            });
+            var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var recipient = button.getAttribute('data-bs-whatever')
+        var modalTitle = exampleModal.querySelector('.modal-title')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+    
+        modalTitle.textContent = 'Ubah fee ' + recipient + '% Ke '
+        modalBodyInput.value = recipient
+    })
+        </script>
+    
+

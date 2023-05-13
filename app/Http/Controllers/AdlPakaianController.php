@@ -3,37 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdlPakaian;
+use App\Models\DataMaster;
 use Illuminate\Http\Request;
 
 class AdlPakaianController extends Controller
 {
-    public function __construct(){
+    protected $modul;
+    public function __construct()
+    {
         $this->modul = 'adlpakaian';
-
     }
     public function index()
     {
         $modul = $this->modul;
-       $adlpakaian = AdlPakaian::all();
-        return view('adlpakaian.index',compact('modul','adlpakaian'));
-
+        $adlpakaian = DataMaster::where('jenis','adl_pakaian')->get();
+        return view('adlpakaian.index', compact('modul', 'adlpakaian'));
     }
     public function create()
     {
         $modul = $this->modul;
-        return view('adlpakaian.add',compact('modul'));
-
+        return view('adlpakaian.add', compact('modul'));
     }
-    public function store(Request $request )
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = AdlPakaian::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'adl_pakaian',
 
 
         ]);
@@ -42,41 +42,42 @@ class AdlPakaianController extends Controller
             return redirect()
                 ->route('adlpakaian.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                    'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
                 ]);
         }
     }
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
-       $adlpakaian = AdlPakaian::find($id);
+        $adlpakaian = DataMaster::find($id);
         $modul = $this->modul;
-        return view('adlpakaian.edit', compact('modul','adlpakaian'));
+        return view('adlpakaian.edit', compact('modul', 'adlpakaian'));
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = AdlPakaian::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('adlpakaian.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                    'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -92,22 +93,23 @@ class AdlPakaianController extends Controller
     {
         # code...
     }
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-        $post = AdlPakaian::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
         $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('adlpakaian.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('adlpakaian.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

@@ -3,37 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdlBab;
+use App\Models\DataMaster;
 use Illuminate\Http\Request;
 
 class AdlBabController extends Controller
 {
-    public function __construct(){
+    protected $modul;
+    public function __construct()
+    {
         $this->modul = 'adlbab';
-
     }
     public function index()
     {
         $modul = $this->modul;
-       $adlbab = AdlBab::all();
-        return view('adlbab.index',compact('modul','adlbab'));
-
+        $adlbab = DataMaster::where('jenis','adl_bab')->get();
+        return view('adlbab.index', compact('modul', 'adlbab'));
     }
     public function create()
     {
         $modul = $this->modul;
-        return view('adlbab.add',compact('modul'));
-
+        return view('adlbab.add', compact('modul'));
     }
-    public function store(Request $request )
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
 
         ]);
-        $post = AdlBab::create([
+        $post = DataMaster::create([
             'name' => $request->name,
-            'value' => $request->value,
+            'jenis' => 'adl_bab',
 
 
         ]);
@@ -42,41 +42,42 @@ class AdlBabController extends Controller
             return redirect()
                 ->route('adlbab.index')
                 ->with([
-                    'success' => 'New post has been created successfully'
+                   'success' => 'Data Berhasil Dibuat'
                 ]);
         } else {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    'error' => 'Some problem occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
                 ]);
         }
     }
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
-       $adlbab = AdlBab::find($id);
+        $adlbab = DataMaster::find($id);
         $modul = $this->modul;
-        return view('adlbab.edit', compact('modul','adlbab'));
+        return view('adlbab.edit', compact('modul', 'adlbab'));
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
-            'value'=>'required',
+            // 'value'=>'required',
         ]);
         // dd($request->kategori_bisnis);
-        $post = AdlBab::findOrFail($id);
+        $post = DataMaster::findOrFail($id);
 
         $post->update([
             'name' => $request->name,
-            'value' => $request->value,
+            // 'value' => $request->value,
         ]);
 
         if ($post) {
             return redirect()
                 ->route('adlbab.index')
                 ->with([
-                    'success' => 'Calon Penerima Berhasil Diupdate'
+                    'success' => 'Data Berhasil Diupdate'
                 ]);
         } else {
             return redirect()
@@ -92,22 +93,23 @@ class AdlBabController extends Controller
     {
         # code...
     }
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-        $post = AdlBab::findOrFail($id);
-        $post->delete();
+            $post = DataMaster::findOrFail($id);
+            $post->delete();
 
         if ($post) {
             return redirect()
                 ->route('adlbab.index')
                 ->with([
-                    'success' => 'Kategori has been deleted successfully'
+                    'success' => 'Data Berhasil Dihapus'
                 ]);
         } else {
             return redirect()
                 ->route('adlbab.index')
                 ->with([
-                    'error' => 'Some problem has occurred, please try again'
+                    'error' => 'Terjadi Kesalahan, Coba Lagi'
+
                 ]);
         }
     }

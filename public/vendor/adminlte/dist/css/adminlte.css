@@ -2585,6 +2585,12 @@ fieldset:disabled a.btn {
   border-color: #007bff;
   box-shadow: none;
 }
+.btn-indigo {
+  color: #888888;
+  background-color: #888888;
+  border-color: #888888;
+  box-shadow: none;
+}
 
 .btn-primary:hover {
   color: #fff;
@@ -26724,6 +26730,11 @@ body.text-sm .input-group-text {
 .card-secondary:not(.card-outline) > .card-header {
   background-color: #6c757d;
 }
+
+.card-brand:not(.card-outline) > .card-header {
+  background-color: #888888;
+}
+
 
 .card-secondary:not(.card-outline) > .card-header,
 .card-secondary:not(.card-outline) > .card-header a {
