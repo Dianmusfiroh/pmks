@@ -268,7 +268,7 @@ class PmksController extends Controller
         (SELECT m.name AS ket_status_rumah FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_ket_status_rumah = m.id) AS ksr ,
         (SELECT m.name AS adl_transfer FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_adl_transfer = m.id) AS at ,
         (SELECT m.name AS kppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_kppk = m.id) AS k ,
-        (SELECT m.name AS uppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.	id_uppk = m.id) AS u, t_pmks a, t_kecamatan kc , t_kelurahan kl WHERE kc.id = a.id_kecamatan AND kl.id = a.id_kelurahan AND a.id =  $id ");
+        (SELECT m.name AS uppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.	id_uppk = m.id) AS u, t_pmks a, t_kecamatan kc , t_kelurahan kl WHERE kc.id = a.id_kecamatan AND kl.id = a.id_kelurahan AND a.id =  $id LIMIT 1 ");
         // dd($pmks[0]->id);
         $modul = $this->modul;
         $jenisDisabilitas = DataMaster::where('jenis','jenis_disabilitas')->get();
@@ -409,7 +409,7 @@ class PmksController extends Controller
         (SELECT m.name AS ket_status_rumah FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_ket_status_rumah = m.id) AS ksr ,
         (SELECT m.name AS adl_transfer FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_adl_transfer = m.id) AS at ,
         (SELECT m.name AS kppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.id_kppk = m.id) AS k ,
-        (SELECT m.name AS uppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.	id_uppk = m.id) AS u, t_pmks a, t_kecamatan kc , t_kelurahan kl WHERE kc.id = a.id_kecamatan AND kl.id = a.id_kelurahan AND a.id =  $id ");
+        (SELECT m.name AS uppk FROM `t_pmks`p, t_kategori_pmks m WHERE p.	id_uppk = m.id) AS u, t_pmks a, t_kecamatan kc , t_kelurahan kl WHERE kc.id = a.id_kecamatan AND kl.id = a.id_kelurahan AND a.id =  $id limit 1");
       
         // dd($pmks);
         $modul = $this->modul;
