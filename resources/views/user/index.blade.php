@@ -84,7 +84,7 @@
                         <option selected>Pilih Role</option>
                         <option value="dinsos">Dinsos</option>
                         <option value="kelurahan">Kelurahan</option>
-                        <option value="kepala">Kepala Subbagian Umum dan Kepegawaian</option>
+                        <option value="kepala">Kepala Subbagian rehabilitas sosial</option>
                         <option value="konfirmasi">Konfirmasi</option>
                     </select>
                 </div>
